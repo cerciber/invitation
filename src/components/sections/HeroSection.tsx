@@ -57,7 +57,7 @@ export function HeroSection() {
   }
 
   return (
-    <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-100 via-pink-50 to-blue-100 p-4">
+    <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-green-50 via-white to-green-50 p-4">
       <div className="perspective-1000">
         <div
           ref={cardRef}
@@ -73,50 +73,50 @@ export function HeroSection() {
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
         >
-          {/* Frente de la carta */}
+          {/* Frente de la invitación */}
           <div className="card-front">
             <div className="card-border">
               <div className="card-header">
-                <div className="holographic-bar"></div>
-                <h2 className="card-title">INVITACIÓN ESPECIAL</h2>
+                <div className="wedding-ornament"></div>
+                <h2 className="wedding-title">Invitación de Boda</h2>
               </div>
               
               <div className="card-content">
                 <div className="guest-name-container">
-                  <div className="decorative-ornament top"></div>
+                  <div className="floral-divider"></div>
                   <h1 className="guest-name">NOMBRE_INVITADO</h1>
-                  <div className="decorative-ornament bottom"></div>
+                  <div className="floral-divider"></div>
                 </div>
                 
                 <div className="invitation-message">
-                  <p className="main-message">¡Estás invitado!</p>
-                  <p className="sub-message">Tu pase a nuestra boda</p>
+                  <p className="main-message">Tienes el honor de estar invitado</p>
+                  <p className="sub-message">a la celebración de nuestro amor</p>
                 </div>
                 
                 <div className="decorative-elements">
-                  <div className="rings"></div>
-                  <div className="hearts">
-                    <span>♥</span>
-                    <span>♥</span>
-                    <span>♥</span>
+                  <div className="wedding-rings"></div>
+                  <div className="floral-elements">
+                    <span>🌿</span>
+                    <span>🌸</span>
+                    <span>🌿</span>
                   </div>
                 </div>
               </div>
               
               <div className="card-footer">
-                <div className="rarity-symbol">★</div>
-                <span className="card-type">WEDDING RARE</span>
+                <p className="wedding-date">Una celebración de amor eterno</p>
+                <div className="elegant-flourish"></div>
               </div>
             </div>
           </div>
 
-          {/* Reverso de la carta */}
+          {/* Reverso de la invitación */}
           <div className="card-back">
             <div className="card-border">
               <div className="back-pattern"></div>
               
               <div className="event-details">
-                <h3 className="event-title">Detalles del Evento</h3>
+                <h3 className="event-title">Detalles de la Celebración</h3>
                 
                 <div className="detail-item">
                   <span className="label">Fecha:</span>
@@ -130,22 +130,22 @@ export function HeroSection() {
                 
                 <div className="detail-item">
                   <span className="label">Lugar:</span>
-                  <span className="value">Hacienda San José</span>
+                  <span className="value">Jardín Botánico Real</span>
                 </div>
                 
                 <div className="detail-item">
-                  <span className="label">Dress Code:</span>
-                  <span className="value">Formal Elegante</span>
+                  <span className="label">Vestimenta:</span>
+                  <span className="value">Formal Garden Party</span>
                 </div>
               </div>
               
               <div className="back-footer">
                 <div className="wedding-symbols">
+                  <span>🌿</span>
                   <span>💍</span>
-                  <span>🌹</span>
-                  <span>💍</span>
+                  <span>🌿</span>
                 </div>
-                <p className="back-text">Carta de Invitación Oficial</p>
+                <p className="back-text">Con amor, esperamos tu presencia</p>
               </div>
             </div>
           </div>
@@ -153,7 +153,7 @@ export function HeroSection() {
       </div>
       
       <div className="tap-hint">
-        <p className="text-gray-600 text-sm mt-8">Mueve el cursor sobre la carta • Toca para voltear</p>
+        <p className="text-green-600 text-sm mt-8">Desliza sobre la invitación • Toca para voltear</p>
       </div>
     </section>
   )
