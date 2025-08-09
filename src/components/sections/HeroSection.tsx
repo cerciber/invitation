@@ -9,6 +9,8 @@ export function HeroSection() {
 
   const handleCardClick = () => {
     setIsFlipped(!isFlipped)
+    // Resetear la rotación cuando se voltea la carta para que quede centrada
+    setRotation({ x: 0, y: 0 })
   }
 
   const handleMouseMove = (e: React.MouseEvent) => {
