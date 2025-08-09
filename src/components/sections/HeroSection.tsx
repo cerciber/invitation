@@ -124,7 +124,7 @@ export function HeroSection({ guestCode }: HeroSectionProps) {
                 </div>
                 
                 <div className="invitation-message" style={getFrontParallaxStyle(0.6)}>
-                  <p className="main-message">Tienes el honor de estar invitado</p>
+                  <p className="main-message">Tienes el honor de estar {guestInfo?.female ? "invitada" : "invitado"}</p>
                   <p className="sub-message">a la celebración de nuestro amor</p>
                 </div>
                 

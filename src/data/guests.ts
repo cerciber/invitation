@@ -1,6 +1,5 @@
 // Estructura de datos para los invitados
 export interface GuestInfo {
-  code: string;
   name: string;
   female: boolean;
 }
@@ -8,14 +7,16 @@ export interface GuestInfo {
 // Lista de invitados con sus códigos únicos
 export const guestsData: Record<string, GuestInfo> = {
   "A001": {
-    code: "A001",
     name: "Claudia Ardila",
     female: true,
   },
   "A002": {
-    code: "A002", 
     name: "Juliet Buitrago",
     female: true,
+  },
+  "A003": {
+    name: "Pablo Torres",
+    female: false,
   },
 };
 
