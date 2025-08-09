@@ -29,7 +29,7 @@
     height: 500px;
     position: relative;
     transform-style: preserve-3d;
-    transition: transform 0.3s ease-out;
+    transition: transform 0.15s ease-out; /* Más rápida para mayor sensibilidad */
     cursor: pointer;
     margin: 0 auto;
     user-select: none;

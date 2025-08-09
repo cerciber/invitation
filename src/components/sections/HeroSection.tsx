@@ -22,8 +22,8 @@ export function HeroSection() {
     const mouseY = e.clientY
     
     // Calcular la rotación basada en la posición del mouse
-    const rotateY = ((mouseX - centerX) / (rect.width / 2)) * 15 // Max 15 grados
-    const rotateX = ((centerY - mouseY) / (rect.height / 2)) * 15 // Max 15 grados
+    const rotateY = Math.max(-15, Math.min(15, ((mouseX - centerX) / (rect.width / 2)) * 25)) // Limitado a ±15°
+    const rotateX = Math.max(-15, Math.min(15, ((centerY - mouseY) / (rect.height / 2)) * 25)) // Limitado a ±15°
     
     setRotation({ x: rotateX, y: rotateY })
   }
@@ -45,8 +45,8 @@ export function HeroSection() {
     const touchY = touch.clientY
     
     // Calcular la rotación basada en la posición del toque
-    const rotateY = ((touchX - centerX) / (rect.width / 2)) * 15
-    const rotateX = ((centerY - touchY) / (rect.height / 2)) * 15
+    const rotateY = Math.max(-15, Math.min(15, ((touchX - centerX) / (rect.width / 2)) * 30)) // Limitado a ±15°
+    const rotateX = Math.max(-15, Math.min(15, ((centerY - touchY) / (rect.height / 2)) * 30)) // Limitado a ±15°
     
     setRotation({ x: rotateX, y: rotateY })
   }
@@ -59,12 +59,12 @@ export function HeroSection() {
   // Función para el efecto paralaje de la foto
   const getPhotoParallaxStyle = () => {
     // Movimiento sutil en dirección opuesta a la rotación de la carta
-    const offsetX = rotation.y * -0.5 // Movimiento horizontal opuesto
-    const offsetY = rotation.x * 0.3  // Movimiento vertical suave
+    const offsetX = rotation.y * -0.8 // Aumentado para mayor visibilidad
+    const offsetY = rotation.x * 0.5  // Aumentado para mayor efecto
     
     return {
       transform: `translate(${offsetX}px, ${offsetY}px) scale(1.05)`,
-      transition: 'transform 0.3s ease-out'
+      transition: 'transform 0.15s ease-out' // Más rápida para mayor responsividad
     }
   }
 
