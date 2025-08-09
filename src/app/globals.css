@@ -358,10 +358,9 @@
     object-fit: cover;
     object-position: center;
     filter: 
-      brightness(1.1) 
-      contrast(1.05) 
-      saturate(1.1) 
-      sepia(0.1);
+      brightness(1.05) 
+      sepia(0.1)
+      grayscale(0.1);
     /* El transform y transition se manejan ahora desde JavaScript para el paralaje */
   }
 
