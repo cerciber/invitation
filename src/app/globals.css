@@ -383,6 +383,174 @@
       0 0 20px rgba(167, 201, 87, 0.3);
   }
 
+  /* Elementos decorativos del reverso */
+  .back-decorative-elements {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 15;
+  }
+
+  /* Hojas decorativas en las esquinas */
+  .corner-leaves .leaf {
+    position: absolute;
+    width: 20px;
+    height: 30px;
+    background: linear-gradient(45deg, #a7c957, #d4e09b);
+    border-radius: 0 100% 0 100%;
+    opacity: 0.6;
+    animation: gentle-sway 4s ease-in-out infinite;
+  }
+
+  .leaf-top-left {
+    top: 10px;
+    left: 10px;
+    transform: rotate(-45deg);
+    animation-delay: 0s;
+  }
+
+  .leaf-top-right {
+    top: 10px;
+    right: 10px;
+    transform: rotate(45deg);
+    animation-delay: 1s;
+  }
+
+  .leaf-bottom-left {
+    bottom: 10px;
+    left: 10px;
+    transform: rotate(-135deg);
+    animation-delay: 2s;
+  }
+
+  .leaf-bottom-right {
+    bottom: 10px;
+    right: 10px;
+    transform: rotate(135deg);
+    animation-delay: 3s;
+  }
+
+  /* Ornamentos florales en los bordes */
+  .border-ornaments .ornament {
+    position: absolute;
+    background: radial-gradient(circle, #a7c957, transparent);
+    opacity: 0.4;
+    animation: gentle-pulse 5s ease-in-out infinite;
+  }
+
+  .ornament-top {
+    top: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 8px;
+    border-radius: 50%;
+    animation-delay: 0s;
+  }
+
+  .ornament-bottom {
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 8px;
+    border-radius: 50%;
+    animation-delay: 2.5s;
+  }
+
+  .ornament-left {
+    left: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 8px;
+    height: 40px;
+    border-radius: 50%;
+    animation-delay: 1.25s;
+  }
+
+  .ornament-right {
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 8px;
+    height: 40px;
+    border-radius: 50%;
+    animation-delay: 3.75s;
+  }
+
+  /* Detalles florales sutiles */
+  .floating-details .detail {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: #a7c957;
+    border-radius: 50%;
+    opacity: 0.5;
+    animation: gentle-float 3s ease-in-out infinite;
+  }
+
+  .detail::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    width: 10px;
+    height: 10px;
+    border: 1px solid #d4e09b;
+    border-radius: 50%;
+    opacity: 0.3;
+  }
+
+  .detail-1 {
+    top: 20%;
+    left: 15%;
+    animation-delay: 0s;
+  }
+
+  .detail-2 {
+    top: 30%;
+    right: 20%;
+    animation-delay: 1s;
+  }
+
+  .detail-3 {
+    bottom: 35%;
+    left: 18%;
+    animation-delay: 2s;
+  }
+
+  .detail-4 {
+    bottom: 25%;
+    right: 15%;
+    animation-delay: 1.5s;
+  }
+
+  /* Animaciones para elementos decorativos */
+  @keyframes gentle-float {
+    0%, 100% { 
+      transform: translateY(0px) scale(1); 
+      opacity: 0.5; 
+    }
+    50% { 
+      transform: translateY(-3px) scale(1.05); 
+      opacity: 0.8; 
+    }
+  }
+
+  @keyframes gentle-pulse {
+    0%, 100% { 
+      transform: scale(1); 
+      opacity: 0.4; 
+    }
+    50% { 
+      transform: scale(1.2); 
+      opacity: 0.7; 
+    }
+  }
+
 
 
   /* Responsive para móviles */
@@ -428,6 +596,36 @@
 
     .floral-elements span {
       font-size: 14px;
+    }
+
+    /* Elementos decorativos del reverso en móvil */
+    .corner-leaves .leaf {
+      width: 15px;
+      height: 22px;
+    }
+
+    .border-ornaments .ornament-top,
+    .border-ornaments .ornament-bottom {
+      width: 30px;
+      height: 6px;
+    }
+
+    .border-ornaments .ornament-left,
+    .border-ornaments .ornament-right {
+      width: 6px;
+      height: 30px;
+    }
+
+    .floating-details .detail {
+      width: 4px;
+      height: 4px;
+    }
+
+    .detail::after {
+      width: 8px;
+      height: 8px;
+      top: -2px;
+      left: -2px;
     }
   }
 }

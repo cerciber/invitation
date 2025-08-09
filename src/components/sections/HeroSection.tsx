@@ -138,6 +138,33 @@ export function HeroSection() {
           {/* Reverso de la invitación */}
           <div className="card-back">
             <div className="card-border">
+              {/* Elementos decorativos elegantes */}
+              <div className="back-decorative-elements">
+                {/* Hojas decorativas en las esquinas */}
+                <div className="corner-leaves">
+                  <div className="leaf leaf-top-left" style={getFrontParallaxStyle(2.2)}></div>
+                  <div className="leaf leaf-top-right" style={getFrontParallaxStyle(1.8)}></div>
+                  <div className="leaf leaf-bottom-left" style={getFrontParallaxStyle(2.5)}></div>
+                  <div className="leaf leaf-bottom-right" style={getFrontParallaxStyle(1.9)}></div>
+                </div>
+                
+                {/* Ornamentos florales en los bordes */}
+                <div className="border-ornaments">
+                  <div className="ornament ornament-top" style={getFrontParallaxStyle(1.5)}></div>
+                  <div className="ornament ornament-bottom" style={getFrontParallaxStyle(1.7)}></div>
+                  <div className="ornament ornament-left" style={getFrontParallaxStyle(2.0)}></div>
+                  <div className="ornament ornament-right" style={getFrontParallaxStyle(1.6)}></div>
+                </div>
+                
+                {/* Detalles florales sutiles */}
+                <div className="floating-details">
+                  <div className="detail detail-1" style={getFrontParallaxStyle(2.8)}></div>
+                  <div className="detail detail-2" style={getFrontParallaxStyle(1.4)}></div>
+                  <div className="detail detail-3" style={getFrontParallaxStyle(2.1)}></div>
+                  <div className="detail detail-4" style={getFrontParallaxStyle(1.9)}></div>
+                </div>
+              </div>
+              
               <div className="photo-container">
                 <img 
                   src="/assets/photo-1.jpeg" 
