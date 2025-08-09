@@ -70,6 +70,18 @@ export function HeroSection() {
     }
   }
 
+  // Función para el efecto paralaje de elementos del frente
+  const getFrontParallaxStyle = (intensity = 1) => {
+    // Movimiento más pronunciado para que sea más visible
+    const offsetX = rotation.y * -1.2 * intensity
+    const offsetY = rotation.x * 0.8 * intensity
+    
+    return {
+      transform: `translate(${offsetX}px, ${offsetY}px)`,
+      transition: 'transform 0.15s ease-out'
+    }
+  }
+
   return (
     <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-green-50 via-white to-green-50 p-4">
       <div className="perspective-1000">
@@ -91,24 +103,24 @@ export function HeroSection() {
           <div className="card-front">
             <div className="card-border">
               <div className="card-header">
-                <div className="wedding-ornament"></div>
-                <h2 className="wedding-title">Invitación de Boda</h2>
+                <div className="wedding-ornament" style={getFrontParallaxStyle(1.2)}></div>
+                <h2 className="wedding-title" style={getFrontParallaxStyle(0.7)}>Invitación de Boda</h2>
               </div>
               
               <div className="card-content">
                 <div className="guest-name-container">
-                  <div className="floral-divider"></div>
-                  <h1 className="guest-name">NOMBRE_INVITADO</h1>
-                  <div className="floral-divider"></div>
+                  <div className="floral-divider" style={getFrontParallaxStyle(1.5)}></div>
+                  <h1 className="guest-name" style={getFrontParallaxStyle(0.8)}>NOMBRE_INVITADO</h1>
+                  <div className="floral-divider" style={getFrontParallaxStyle(1.5)}></div>
                 </div>
                 
-                <div className="invitation-message">
+                <div className="invitation-message" style={getFrontParallaxStyle(0.6)}>
                   <p className="main-message">Tienes el honor de estar invitado</p>
                   <p className="sub-message">a la celebración de nuestro amor</p>
                 </div>
                 
                 <div className="decorative-elements">
-                  <div className="floral-elements">
+                  <div className="floral-elements" style={getFrontParallaxStyle(1.8)}>
                     <span>🌿</span>
                     <span>🌿</span>
                     <span>🌿</span>
@@ -117,8 +129,8 @@ export function HeroSection() {
               </div>
               
               <div className="card-footer">
-                <p className="wedding-date">Una celebración de amor eterno</p>
-                <div className="elegant-flourish"></div>
+                <p className="wedding-date" style={getFrontParallaxStyle(0.5)}>Una celebración de amor eterno</p>
+                <div className="elegant-flourish" style={getFrontParallaxStyle(1.4)}></div>
               </div>
             </div>
           </div>
