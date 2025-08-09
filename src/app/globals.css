@@ -394,137 +394,266 @@
     z-index: 15;
   }
 
-  /* Hojas decorativas en las esquinas */
+  /* Hojas decorativas más elaboradas */
   .corner-leaves .leaf {
     position: absolute;
-    width: 20px;
-    height: 30px;
-    background: linear-gradient(45deg, #a7c957, #d4e09b);
-    border-radius: 0 100% 0 100%;
-    opacity: 0.6;
+    width: 25px;
+    height: 35px;
+    opacity: 0.7;
     animation: gentle-sway 4s ease-in-out infinite;
   }
 
+  .corner-leaves .leaf::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #6b8e23 0%, #a7c957 30%, #d4e09b 70%, #9cb834 100%);
+    border-radius: 0 100% 0 100%;
+    box-shadow: inset 2px 2px 4px rgba(0,0,0,0.1);
+  }
+
+  .corner-leaves .leaf::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #6b8e23, transparent);
+    transform: translateY(-50%);
+  }
+
   .leaf-top-left {
-    top: 10px;
-    left: 10px;
-    transform: rotate(-45deg);
+    top: 8px;
+    left: 8px;
+    transform: rotate(-30deg);
     animation-delay: 0s;
   }
 
   .leaf-top-right {
-    top: 10px;
-    right: 10px;
-    transform: rotate(45deg);
+    top: 8px;
+    right: 8px;
+    transform: rotate(30deg);
     animation-delay: 1s;
   }
 
   .leaf-bottom-left {
-    bottom: 10px;
-    left: 10px;
-    transform: rotate(-135deg);
+    bottom: 8px;
+    left: 8px;
+    transform: rotate(-150deg);
     animation-delay: 2s;
   }
 
   .leaf-bottom-right {
-    bottom: 10px;
-    right: 10px;
-    transform: rotate(135deg);
+    bottom: 8px;
+    right: 8px;
+    transform: rotate(150deg);
     animation-delay: 3s;
   }
 
-  /* Ornamentos florales en los bordes */
+  /* Ramas decorativas en los bordes */
   .border-ornaments .ornament {
     position: absolute;
-    background: radial-gradient(circle, #a7c957, transparent);
-    opacity: 0.4;
-    animation: gentle-pulse 5s ease-in-out infinite;
+    opacity: 0.6;
+    animation: gentle-grow 6s ease-in-out infinite;
   }
 
   .ornament-top {
-    top: 5px;
+    top: 3px;
     left: 50%;
     transform: translateX(-50%);
-    width: 40px;
-    height: 8px;
-    border-radius: 50%;
+    width: 50px;
+    height: 12px;
     animation-delay: 0s;
   }
 
-  .ornament-bottom {
-    bottom: 5px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 40px;
+  .ornament-top::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #6b8e23, #a7c957, #6b8e23, transparent);
+    transform: translateY(-50%);
+    border-radius: 2px;
+  }
+
+  .ornament-top::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 20%;
+    width: 8px;
     height: 8px;
-    border-radius: 50%;
-    animation-delay: 2.5s;
+    background: radial-gradient(ellipse 60% 80%, #a7c957, #6b8e23);
+    border-radius: 0 100% 0 80%;
+    transform: rotate(15deg);
+    box-shadow: 25px 0 0 -2px #a7c957, 35px 2px 0 -3px #6b8e23;
+  }
+
+  .ornament-bottom {
+    bottom: 3px;
+    left: 50%;
+    transform: translateX(-50%) rotate(180deg);
+    width: 50px;
+    height: 12px;
+    animation-delay: 3s;
+  }
+
+  .ornament-bottom::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #6b8e23, #a7c957, #6b8e23, transparent);
+    transform: translateY(-50%);
+    border-radius: 2px;
+  }
+
+  .ornament-bottom::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 20%;
+    width: 8px;
+    height: 8px;
+    background: radial-gradient(ellipse 60% 80%, #a7c957, #6b8e23);
+    border-radius: 0 100% 0 80%;
+    transform: rotate(15deg);
+    box-shadow: 25px 0 0 -2px #a7c957, 35px 2px 0 -3px #6b8e23;
   }
 
   .ornament-left {
-    left: 5px;
+    left: 3px;
     top: 50%;
+    transform: translateY(-50%) rotate(-90deg);
+    width: 50px;
+    height: 12px;
+    animation-delay: 1.5s;
+  }
+
+  .ornament-left::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #6b8e23, #a7c957, #6b8e23, transparent);
     transform: translateY(-50%);
+    border-radius: 2px;
+  }
+
+  .ornament-left::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 20%;
     width: 8px;
-    height: 40px;
-    border-radius: 50%;
-    animation-delay: 1.25s;
+    height: 8px;
+    background: radial-gradient(ellipse 60% 80%, #a7c957, #6b8e23);
+    border-radius: 0 100% 0 80%;
+    transform: rotate(15deg);
+    box-shadow: 25px 0 0 -2px #a7c957, 35px 2px 0 -3px #6b8e23;
   }
 
   .ornament-right {
-    right: 5px;
+    right: 3px;
     top: 50%;
-    transform: translateY(-50%);
-    width: 8px;
-    height: 40px;
-    border-radius: 50%;
-    animation-delay: 3.75s;
+    transform: translateY(-50%) rotate(90deg);
+    width: 50px;
+    height: 12px;
+    animation-delay: 4.5s;
   }
 
-  /* Detalles florales sutiles */
+  .ornament-right::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #6b8e23, #a7c957, #6b8e23, transparent);
+    transform: translateY(-50%);
+    border-radius: 2px;
+  }
+
+  .ornament-right::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 20%;
+    width: 8px;
+    height: 8px;
+    background: radial-gradient(ellipse 60% 80%, #a7c957, #6b8e23);
+    border-radius: 0 100% 0 80%;
+    transform: rotate(15deg);
+    box-shadow: 25px 0 0 -2px #a7c957, 35px 2px 0 -3px #6b8e23;
+  }
+
+  /* Pequeñas flores decorativas */
   .floating-details .detail {
     position: absolute;
+    width: 8px;
+    height: 8px;
+    opacity: 0.6;
+    animation: gentle-bloom 4s ease-in-out infinite;
+  }
+
+  .detail::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
     width: 6px;
     height: 6px;
-    background: #a7c957;
+    background: radial-gradient(circle, #d4e09b, #a7c957);
     border-radius: 50%;
-    opacity: 0.5;
-    animation: gentle-float 3s ease-in-out infinite;
+    transform: translate(-50%, -50%);
   }
 
   .detail::after {
     content: '';
     position: absolute;
-    top: -2px;
-    left: -2px;
-    width: 10px;
-    height: 10px;
-    border: 1px solid #d4e09b;
+    top: 50%;
+    left: 50%;
+    width: 8px;
+    height: 8px;
+    background: 
+      radial-gradient(ellipse 40% 80% at 20% 50%, #a7c957, transparent),
+      radial-gradient(ellipse 40% 80% at 80% 50%, #a7c957, transparent),
+      radial-gradient(ellipse 80% 40% at 50% 20%, #a7c957, transparent),
+      radial-gradient(ellipse 80% 40% at 50% 80%, #a7c957, transparent);
     border-radius: 50%;
-    opacity: 0.3;
+    transform: translate(-50%, -50%);
+    opacity: 0.8;
   }
 
   .detail-1 {
-    top: 20%;
-    left: 15%;
+    top: 18%;
+    left: 12%;
     animation-delay: 0s;
   }
 
   .detail-2 {
-    top: 30%;
-    right: 20%;
+    top: 28%;
+    right: 18%;
     animation-delay: 1s;
   }
 
   .detail-3 {
-    bottom: 35%;
-    left: 18%;
+    bottom: 32%;
+    left: 15%;
     animation-delay: 2s;
   }
 
   .detail-4 {
-    bottom: 25%;
-    right: 15%;
+    bottom: 22%;
+    right: 12%;
     animation-delay: 1.5s;
   }
 
@@ -548,6 +677,28 @@
     50% { 
       transform: scale(1.2); 
       opacity: 0.7; 
+    }
+  }
+
+  @keyframes gentle-grow {
+    0%, 100% { 
+      transform: scaleX(1); 
+      opacity: 0.6; 
+    }
+    50% { 
+      transform: scaleX(1.1); 
+      opacity: 0.8; 
+    }
+  }
+
+  @keyframes gentle-bloom {
+    0%, 100% { 
+      transform: scale(1) rotate(0deg); 
+      opacity: 0.6; 
+    }
+    50% { 
+      transform: scale(1.15) rotate(5deg); 
+      opacity: 0.9; 
     }
   }
 
@@ -600,32 +751,35 @@
 
     /* Elementos decorativos del reverso en móvil */
     .corner-leaves .leaf {
-      width: 15px;
-      height: 22px;
+      width: 18px;
+      height: 25px;
     }
 
     .border-ornaments .ornament-top,
     .border-ornaments .ornament-bottom {
-      width: 30px;
-      height: 6px;
+      width: 35px;
+      height: 8px;
     }
 
     .border-ornaments .ornament-left,
     .border-ornaments .ornament-right {
-      width: 6px;
-      height: 30px;
+      width: 35px;
+      height: 8px;
     }
 
     .floating-details .detail {
+      width: 6px;
+      height: 6px;
+    }
+
+    .detail::before {
       width: 4px;
       height: 4px;
     }
 
     .detail::after {
-      width: 8px;
-      height: 8px;
-      top: -2px;
-      left: -2px;
+      width: 6px;
+      height: 6px;
     }
   }
 }
