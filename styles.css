@@ -1,0 +1,227 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Playfair Display', serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.container {
+    perspective: 1000px;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card {
+    width: 400px;
+    height: 600px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+}
+
+.card:hover {
+    transform: scale(1.02);
+}
+
+.card.flipped .card-inner {
+    transform: rotateY(180deg);
+}
+
+.card.flipped:hover {
+    transform: scale(1.02);
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+.card-front,
+.card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
+
+.card-front {
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    border: 3px solid #d4af37;
+}
+
+.card-back {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    transform: rotateY(180deg);
+    border: 3px solid #d4af37;
+}
+
+.card-content {
+    padding: 40px 30px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Texto principal */
+.main-text {
+    position: relative;
+}
+
+.title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.5em;
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+
+.couple-names {
+    margin: 30px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.name {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.2em;
+    font-weight: 700;
+    color: #8e44ad;
+}
+
+.and {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.8em;
+    color: #d4af37;
+    font-weight: 700;
+}
+
+.date {
+    margin: 25px 0;
+}
+
+.date-text {
+    font-size: 1.3em;
+    color: #2c3e50;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.time {
+    font-size: 1.1em;
+    color: #7f8c8d;
+    font-weight: 500;
+}
+
+.location {
+    margin: 25px 0;
+}
+
+.venue {
+    font-size: 1.4em;
+    color: #2c3e50;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.address,
+.city {
+    font-size: 1em;
+    color: #7f8c8d;
+    margin-bottom: 2px;
+}
+
+/* Estilos para el reverso de la carta */
+.card-back h2 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.2em;
+    margin-bottom: 30px;
+    color: #f8f9fa;
+}
+
+.details {
+    margin: 30px 0;
+}
+
+.detail-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin: 15px 0;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.icon {
+    font-size: 1.5em;
+}
+
+.text {
+    font-size: 1.1em;
+    font-weight: 500;
+}
+
+.rsvp {
+    margin-top: 40px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.rsvp p {
+    margin: 5px 0;
+    font-size: 1.1em;
+}
+
+.contact {
+    color: #f8f9fa;
+    font-weight: 600;
+    text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .card {
+        width: 350px;
+        height: 500px;
+    }
+    
+    .title {
+        font-size: 2em;
+    }
+    
+    .name {
+        font-size: 1.8em;
+    }
+    
+    .card-content {
+        padding: 30px 20px;
+    }
+} 
