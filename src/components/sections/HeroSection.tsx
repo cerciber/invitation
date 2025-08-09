@@ -56,6 +56,18 @@ export function HeroSection() {
     setRotation({ x: 0, y: 0 })
   }
 
+  // Función para el efecto paralaje de la foto
+  const getPhotoParallaxStyle = () => {
+    // Movimiento sutil en dirección opuesta a la rotación de la carta
+    const offsetX = rotation.y * -0.5 // Movimiento horizontal opuesto
+    const offsetY = rotation.x * 0.3  // Movimiento vertical suave
+    
+    return {
+      transform: `translate(${offsetX}px, ${offsetY}px) scale(1.05)`,
+      transition: 'transform 0.3s ease-out'
+    }
+  }
+
   return (
     <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-green-50 via-white to-green-50 p-4">
       <div className="perspective-1000">
@@ -118,6 +130,7 @@ export function HeroSection() {
                   src="/assets/photo-1.jpeg" 
                   alt="Foto de la pareja" 
                   className="couple-photo"
+                  style={getPhotoParallaxStyle()}
                 />
                 <div className="photo-overlay"></div>
               </div>

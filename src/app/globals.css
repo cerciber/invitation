@@ -357,12 +357,12 @@
     height: 100%;
     object-fit: cover;
     object-position: center;
-    transition: transform 0.6s ease;
     filter: 
       brightness(1.1) 
       contrast(1.05) 
       saturate(1.1) 
       sepia(0.1);
+    /* El transform y transition se manejan ahora desde JavaScript para el paralaje */
   }
 
   .photo-overlay {
@@ -382,14 +382,7 @@
     transition: opacity 0.4s ease;
   }
 
-  /* Efecto hover en la foto */
-  .card-back:hover .couple-photo {
-    transform: scale(1.05);
-  }
-
-  .card-back:hover .photo-overlay {
-    opacity: 0.7;
-  }
+  /* Efecto hover en la foto - removido para no interferir con el paralaje */
 
   /* Efecto de marco elegante */
   .photo-container::before {
