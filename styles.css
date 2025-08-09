@@ -1,227 +1,1043 @@
+/* Variables CSS */
+:root {
+    --color-white: #ffffff;
+    --color-cream: #fafafa;
+    --color-light-green: #e8f5e8;
+    --color-green: #4a7c59;
+    --color-dark-green: #2d5a3d;
+    --color-sage: #9caf88;
+    --color-forest: #2c5530;
+    --color-text: #2c3e50;
+    --color-text-light: #6c757d;
+    --font-primary: 'Playfair Display', serif;
+    --font-secondary: 'Montserrat', sans-serif;
+    --transition: all 0.3s ease;
+}
+
+/* Reset y estilos base */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
-    font-family: 'Playfair Display', serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    font-family: var(--font-secondary);
+    line-height: 1.6;
+    color: var(--color-text);
+    background-color: var(--color-white);
+    overflow-x: hidden;
+}
+
+/* Animaciones de transición y aparición */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes rotateIn {
+    from {
+        opacity: 0;
+        transform: rotate(-180deg) scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: rotate(0deg) scale(1);
+    }
+}
+
+/* Clases de animación */
+.fade-in {
+    animation: fadeIn 0.8s ease-out forwards;
+}
+
+.slide-in-left {
+    animation: slideInLeft 0.8s ease-out forwards;
+}
+
+.slide-in-right {
+    animation: slideInRight 0.8s ease-out forwards;
+}
+
+.slide-in-up {
+    animation: slideInUp 0.8s ease-out forwards;
+}
+
+.slide-in-down {
+    animation: slideInDown 0.8s ease-out forwards;
+}
+
+.scale-in {
+    animation: scaleIn 0.8s ease-out forwards;
+}
+
+.rotate-in {
+    animation: rotateIn 0.8s ease-out forwards;
+}
+
+/* Estados iniciales para elementos que se animarán */
+.story-card,
+.detail-card,
+.reception-card,
+.photo-content,
+.section-title,
+.form-group,
+.menu-preview,
+.ceremony-description {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+}
+
+.story-card.animate,
+.detail-card.animate,
+.reception-card.animate,
+.photo-content.animate,
+.section-title.animate,
+.form-group.animate,
+.menu-preview.animate,
+.ceremony-description.animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Efectos de hover mejorados */
+.story-card:hover,
+.detail-card:hover,
+.reception-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+/* Transiciones suaves para elementos interactivos */
+.nav-link,
+.submit-btn,
+.form-group input,
+.form-group textarea,
+.form-group select {
+    transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+    transform: translateY(-2px);
+    color: var(--color-green);
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    transform: scale(1.02);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* Animación del scroll indicator */
+.scroll-indicator {
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+/* Efectos de parallax mejorados */
+.photo-background {
+    transition: transform 0.1s ease-out;
+}
+
+/* Mejoras para animaciones en dispositivos móviles */
+@media (max-width: 768px) {
+    .fade-in,
+    .slide-in-left,
+    .slide-in-right,
+    .slide-in-up,
+    .slide-in-down,
+    .scale-in,
+    .rotate-in {
+        animation-duration: 0.6s;
+    }
+    
+    .story-card,
+    .detail-card,
+    .reception-card,
+    .photo-content,
+    .section-title,
+    .form-group,
+    .menu-preview,
+    .ceremony-description {
+        transform: translateY(20px);
+    }
+}
+
+/* Optimizaciones para preferencias de movimiento reducido */
+@media (prefers-reduced-motion: reduce) {
+    .fade-in,
+    .slide-in-left,
+    .slide-in-right,
+    .slide-in-up,
+    .slide-in-down,
+    .scale-in,
+    .rotate-in {
+        animation: none;
+        opacity: 1;
+        transform: none;
+    }
+    
+    .story-card,
+    .detail-card,
+    .reception-card,
+    .photo-content,
+    .section-title,
+    .form-group,
+    .menu-preview,
+    .ceremony-description {
+        opacity: 1;
+        transform: none;
+    }
+    
+    .scroll-indicator {
+        animation: none;
+    }
+    
+    .photo-background {
+        transition: none;
+    }
+}
+
+/* Efectos de transición para elementos específicos */
+.hero-title,
+.hero-subtitle,
+.hero-date,
+.hero-location {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+}
+
+.hero-title.animate,
+.hero-subtitle.animate,
+.hero-date.animate,
+.hero-location.animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Mejoras para el menú móvil */
+.nav-menu.active .nav-link {
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: slideInDown 0.3s ease-out forwards;
+}
+
+.nav-menu.active .nav-link:nth-child(1) { animation-delay: 0.1s; }
+.nav-menu.active .nav-link:nth-child(2) { animation-delay: 0.2s; }
+.nav-menu.active .nav-link:nth-child(3) { animation-delay: 0.3s; }
+.nav-menu.active .nav-link:nth-child(4) { animation-delay: 0.4s; }
+.nav-menu.active .nav-link:nth-child(5) { animation-delay: 0.5s; }
+.nav-menu.active .nav-link:nth-child(6) { animation-delay: 0.6s; }
+.nav-menu.active .nav-link:nth-child(7) { animation-delay: 0.7s; }
+.nav-menu.active .nav-link:nth-child(8) { animation-delay: 0.8s; }
+
+/* Efectos de transición para el formulario */
+.form-group {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease-out;
+}
+
+.form-group.animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Efectos de hover mejorados para botones */
+.submit-btn {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.submit-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s;
+}
+
+.submit-btn:hover::before {
+    left: 100%;
+}
+
+/* Efectos de transición para las secciones de fotos */
+.photo-content {
+    opacity: 0;
+    transform: scale(0.95);
+    transition: all 0.8s ease-out;
+}
+
+.photo-content.animate {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Navegación */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    padding: 1rem 0;
+    transition: var(--transition);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-logo {
+    font-family: var(--font-primary);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-green);
+}
+
+.nav-menu {
+    display: none;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: var(--color-text);
+    margin-left: 2rem;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.nav-link:hover {
+    color: var(--color-green);
+}
+
+.nav-toggle {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.nav-toggle span {
+    width: 25px;
+    height: 3px;
+    background-color: var(--color-green);
+    margin: 3px 0;
+    transition: var(--transition);
+}
+
+/* Secciones principales */
+.section {
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
-}
-
-.container {
-    perspective: 1000px;
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.card {
-    width: 400px;
-    height: 600px;
     position: relative;
-    transform-style: preserve-3d;
-    transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    cursor: pointer;
+    padding: 80px 2rem 2rem;
 }
 
-.card:hover {
-    transform: scale(1.02);
-}
-
-.card.flipped .card-inner {
-    transform: rotateY(180deg);
-}
-
-.card.flipped:hover {
-    transform: scale(1.02);
-}
-
-.card-inner {
-    position: relative;
+.section-content {
+    max-width: 1200px;
     width: 100%;
-    height: 100%;
     text-align: center;
-    transition: transform 0.8s;
-    transform-style: preserve-3d;
 }
 
-.card-front,
-.card-back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    backface-visibility: hidden;
-    border-radius: 20px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-    overflow: hidden;
-}
-
-.card-front {
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-    border: 3px solid #d4af37;
-}
-
-.card-back {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    transform: rotateY(180deg);
-    border: 3px solid #d4af37;
-}
-
-.card-content {
-    padding: 40px 30px;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-/* Texto principal */
-.main-text {
+/* Sección Inicio */
+#inicio {
+    background: linear-gradient(135deg, var(--color-light-green) 0%, var(--color-white) 100%);
     position: relative;
 }
 
-.title {
-    font-family: 'Dancing Script', cursive;
-    font-size: 2.5em;
-    color: #2c3e50;
-    margin-bottom: 20px;
+.hero-content {
+    position: relative;
+    z-index: 2;
 }
 
-.couple-names {
-    margin: 30px 0;
+.hero-title {
+    font-family: var(--font-primary);
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--color-dark-green);
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    color: var(--color-green);
+    margin-bottom: 2rem;
+    font-weight: 300;
+}
+
+.hero-date {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 15px;
+    gap: 1rem;
+    margin-bottom: 2rem;
     flex-wrap: wrap;
 }
 
-.name {
-    font-family: 'Dancing Script', cursive;
-    font-size: 2.2em;
+.date-day {
+    font-family: var(--font-primary);
+    font-size: 4rem;
     font-weight: 700;
-    color: #8e44ad;
+    color: var(--color-green);
 }
 
-.and {
-    font-family: 'Dancing Script', cursive;
-    font-size: 1.8em;
-    color: #d4af37;
+.date-month, .date-year {
+    font-size: 1.5rem;
+    color: var(--color-dark-green);
+    font-weight: 400;
+}
+
+.hero-location {
+    font-size: 1.1rem;
+    color: var(--color-text-light);
+    margin-bottom: 3rem;
+}
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    cursor: pointer;
+}
+
+.scroll-arrow {
+    width: 30px;
+    height: 30px;
+    border-right: 2px solid var(--color-green);
+    border-bottom: 2px solid var(--color-green);
+    transform: rotate(45deg);
+}
+
+/* Secciones de Fotos */
+.photo-section {
+    position: relative;
+    padding: 0;
+    overflow: hidden;
+}
+
+.photo-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.photo-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        135deg,
+        rgba(45, 90, 61, 0.7) 0%,
+        rgba(74, 124, 89, 0.5) 50%,
+        rgba(156, 175, 136, 0.3) 100%
+    );
+}
+
+.photo-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    color: var(--color-white);
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.photo-title {
+    font-family: var(--font-primary);
+    font-size: 3rem;
     font-weight: 700;
+    margin-bottom: 1.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-.date {
-    margin: 25px 0;
+.photo-message {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    font-weight: 300;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    max-width: 600px;
+    margin: 0 auto;
 }
 
-.date-text {
-    font-size: 1.3em;
-    color: #2c3e50;
-    margin-bottom: 5px;
-    font-weight: 600;
+/* Sección Historia */
+#historia {
+    background-color: var(--color-white);
 }
 
-.time {
-    font-size: 1.1em;
-    color: #7f8c8d;
-    font-weight: 500;
+.section-title {
+    font-family: var(--font-primary);
+    font-size: 2.5rem;
+    color: var(--color-dark-green);
+    margin-bottom: 3rem;
+    position: relative;
 }
 
-.location {
-    margin: 25px 0;
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background-color: var(--color-green);
 }
 
-.venue {
-    font-size: 1.4em;
-    color: #2c3e50;
-    font-weight: 600;
-    margin-bottom: 5px;
+.story-container {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
-.address,
-.city {
-    font-size: 1em;
-    color: #7f8c8d;
-    margin-bottom: 2px;
+.story-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem;
+    background-color: var(--color-light-green);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    transition: var(--transition);
 }
 
-/* Estilos para el reverso de la carta */
-.card-back h2 {
-    font-family: 'Dancing Script', cursive;
-    font-size: 2.2em;
-    margin-bottom: 30px;
-    color: #f8f9fa;
+.story-image {
+    width: 100%;
+    max-width: 300px;
 }
 
-.details {
-    margin: 30px 0;
-}
-
-.detail-item {
+.image-placeholder {
+    width: 100%;
+    height: 200px;
+    background: linear-gradient(135deg, var(--color-sage) 0%, var(--color-green) 100%);
+    border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 15px;
-    margin: 15px 0;
-    padding: 10px;
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: var(--color-white);
+    font-size: 1.2rem;
 }
 
-.icon {
-    font-size: 1.5em;
+.story-text h3 {
+    font-family: var(--font-primary);
+    font-size: 1.5rem;
+    color: var(--color-dark-green);
+    margin-bottom: 1rem;
 }
 
-.text {
-    font-size: 1.1em;
+.story-text p {
+    color: var(--color-text);
+    line-height: 1.8;
+}
+
+/* Sección Ceremonia */
+#ceremonia {
+    background: linear-gradient(135deg, var(--color-white) 0%, var(--color-light-green) 100%);
+}
+
+.ceremony-details {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-bottom: 3rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.detail-card {
+    background-color: var(--color-white);
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    text-align: center;
+    transition: var(--transition);
+}
+
+.detail-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+}
+
+.detail-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.detail-card h3 {
+    font-family: var(--font-primary);
+    color: var(--color-dark-green);
+    margin-bottom: 0.5rem;
+}
+
+.detail-card p {
+    color: var(--color-text-light);
     font-weight: 500;
 }
 
-.rsvp {
-    margin-top: 40px;
-    padding: 20px;
-    background: rgba(255, 255, 255, 0.2);
+.ceremony-description {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: var(--color-light-green);
     border-radius: 15px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-left: 5px solid var(--color-green);
 }
 
-.rsvp p {
-    margin: 5px 0;
-    font-size: 1.1em;
+.ceremony-description p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--color-text);
 }
 
-.contact {
-    color: #f8f9fa;
-    font-weight: 600;
-    text-decoration: underline;
+/* Sección Recepción */
+#recepcion {
+    background-color: var(--color-white);
 }
 
-/* Responsive */
-@media (max-width: 480px) {
-    .card {
-        width: 350px;
-        height: 500px;
+.reception-info {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-bottom: 3rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.reception-card {
+    background: linear-gradient(135deg, var(--color-light-green) 0%, var(--color-white) 100%);
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    text-align: center;
+    transition: var(--transition);
+}
+
+.reception-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+}
+
+.reception-card h3 {
+    font-family: var(--font-primary);
+    color: var(--color-dark-green);
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+}
+
+.reception-card p {
+    color: var(--color-text);
+    margin-bottom: 0.5rem;
+}
+
+.menu-preview {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: var(--color-light-green);
+    border-radius: 15px;
+}
+
+.menu-preview h3 {
+    font-family: var(--font-primary);
+    color: var(--color-dark-green);
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.menu-preview ul {
+    list-style: none;
+    padding: 0;
+}
+
+.menu-preview li {
+    padding: 0.8rem 0;
+    border-bottom: 1px solid rgba(74, 124, 89, 0.2);
+    color: var(--color-text);
+    position: relative;
+    padding-left: 2rem;
+}
+
+.menu-preview li::before {
+    content: '🌿';
+    position: absolute;
+    left: 0;
+    top: 0.8rem;
+}
+
+.menu-preview li:last-child {
+    border-bottom: none;
+}
+
+/* Sección RSVP */
+#rsvp {
+    background: linear-gradient(135deg, var(--color-light-green) 0%, var(--color-white) 100%);
+}
+
+.rsvp-form {
+    max-width: 500px;
+    margin: 0 auto;
+    background-color: var(--color-white);
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--color-dark-green);
+    font-weight: 500;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 2px solid var(--color-light-green);
+    border-radius: 8px;
+    font-family: var(--font-secondary);
+    transition: var(--transition);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--color-green);
+    box-shadow: 0 0 0 3px rgba(74, 124, 89, 0.1);
+}
+
+.radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.radio-group label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    font-weight: 400;
+}
+
+.radio-group input[type="radio"] {
+    width: auto;
+    margin-right: 0.5rem;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 1rem 2rem;
+    background: linear-gradient(135deg, var(--color-green) 0%, var(--color-dark-green) 100%);
+    color: var(--color-white);
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* Footer */
+.footer {
+    background-color: var(--color-dark-green);
+    color: var(--color-white);
+    text-align: center;
+    padding: 2rem;
+}
+
+.footer-content p {
+    margin-bottom: 0.5rem;
+}
+
+/* Media Queries - Tablet */
+@media (min-width: 768px) {
+    .nav-menu {
+        display: flex;
     }
     
-    .title {
-        font-size: 2em;
+    .nav-toggle {
+        display: none;
     }
     
-    .name {
-        font-size: 1.8em;
+    .hero-title {
+        font-size: 4.5rem;
     }
     
-    .card-content {
-        padding: 30px 20px;
+    .photo-title {
+        font-size: 3.5rem;
+    }
+    
+    .photo-message {
+        font-size: 1.3rem;
+    }
+    
+    .story-card {
+        flex-direction: row;
+        text-align: left;
+    }
+    
+    .story-card:nth-child(even) {
+        flex-direction: row-reverse;
+    }
+    
+    .ceremony-details {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .reception-info {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .section-title {
+        font-size: 3rem;
+    }
+}
+
+/* Media Queries - Desktop */
+@media (min-width: 1024px) {
+    .section-content {
+        padding: 0 4rem;
+    }
+    
+    .hero-title {
+        font-size: 5.5rem;
+    }
+    
+    .photo-title {
+        font-size: 4rem;
+    }
+    
+    .photo-content {
+        padding: 3rem;
+    }
+    
+    .story-container {
+        gap: 4rem;
+    }
+    
+    .story-card {
+        padding: 3rem;
+    }
+    
+    .ceremony-details {
+        gap: 3rem;
+    }
+    
+    .reception-info {
+        gap: 3rem;
+    }
+    
+    .rsvp-form {
+        padding: 3rem;
+    }
+}
+
+/* Media Queries - Mobile para fotos */
+@media (max-width: 767px) {
+    .photo-section {
+        background-attachment: scroll;
+    }
+    
+    .photo-background {
+        background-attachment: scroll;
+    }
+    
+    .photo-title {
+        font-size: 2.5rem;
+    }
+    
+    .photo-message {
+        font-size: 1.1rem;
+    }
+    
+    .photo-content {
+        margin: 1rem;
+        padding: 1.5rem;
+    }
+}
+
+/* Estilos para navegación móvil */
+.nav-menu.active {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 1rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.nav-menu.active .nav-link {
+    margin: 0.5rem 0;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(74, 124, 89, 0.2);
+}
+
+.nav-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.nav-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.nav-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+}
+
+/* Mejoras de accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .photo-background {
+        background-attachment: scroll;
+    }
+}
+
+/* Estilos para modo oscuro (opcional) */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --color-white: #1a1a1a;
+        --color-cream: #2a2a2a;
+        --color-light-green: #2d4a3d;
+        --color-text: #e0e0e0;
+        --color-text-light: #b0b0b0;
     }
 } 
