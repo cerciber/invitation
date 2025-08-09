@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { getGuestByCode, getDefaultGuestName } from '@/data/guests'
 
 interface HeroSectionProps {
@@ -10,6 +10,7 @@ interface HeroSectionProps {
 export function HeroSection({ guestCode }: HeroSectionProps) {
   const [isFlipped, setIsFlipped] = useState(false)
   const [rotation, setRotation] = useState({ x: 0, y: 0 })
+  const [isInteracting, setIsInteracting] = useState(false)
   const cardRef = useRef<HTMLDivElement>(null)
 
   // Obtener información del invitado basada en el código
@@ -72,7 +73,48 @@ export function HeroSection({ guestCode }: HeroSectionProps) {
   const handleTouchEnd = () => {
     // Volver a la posición normal cuando termina el toque
     setRotation({ x: 0, y: 0 })
+    setIsInteracting(false)
   }
+
+  const handleInteractionStart = () => {
+    setIsInteracting(true)
+  }
+
+  const handleMouseUp = () => {
+    setIsInteracting(false)
+  }
+
+  // Efecto para bloquear el scroll de la página mientras se interactúa con la tarjeta
+  useEffect(() => {
+    if (!isInteracting) return
+
+    const preventDefaultIfCancelable = (event: Event) => {
+      if ((event as any).cancelable) {
+        event.preventDefault()
+      }
+    }
+
+    const endInteraction = () => setIsInteracting(false)
+
+    const originalBodyOverflow = document.body.style.overflow
+    const originalHtmlOverflow = document.documentElement.style.overflow
+    document.body.style.overflow = 'hidden'
+    document.documentElement.style.overflow = 'hidden'
+
+    window.addEventListener('wheel', preventDefaultIfCancelable, { passive: false })
+    window.addEventListener('touchmove', preventDefaultIfCancelable, { passive: false })
+    window.addEventListener('mouseup', endInteraction)
+    window.addEventListener('touchend', endInteraction)
+
+    return () => {
+      document.body.style.overflow = originalBodyOverflow
+      document.documentElement.style.overflow = originalHtmlOverflow
+      window.removeEventListener('wheel', preventDefaultIfCancelable as EventListener)
+      window.removeEventListener('touchmove', preventDefaultIfCancelable as EventListener)
+      window.removeEventListener('mouseup', endInteraction)
+      window.removeEventListener('touchend', endInteraction)
+    }
+  }, [isInteracting])
 
   // Función para el efecto paralaje de la foto
   const getPhotoParallaxStyle = () => {
@@ -105,6 +147,7 @@ export function HeroSection({ guestCode }: HeroSectionProps) {
           ref={cardRef}
           className={`wedding-card ${isFlipped ? 'flipped' : ''}`}
           style={{
+            touchAction: isInteracting ? 'none' as const : 'manipulation' as const,
             transform: isFlipped 
               ? `rotateX(${rotation.x}deg) rotateY(${180 + rotation.y}deg)`
               : `rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`
@@ -112,7 +155,10 @@ export function HeroSection({ guestCode }: HeroSectionProps) {
           onClick={handleCardClick}
           onDoubleClick={handleDoubleClick}
           onMouseMove={handleMouseMove}
+          onMouseDown={handleInteractionStart}
+          onMouseUp={handleMouseUp}
           onMouseLeave={handleMouseLeave}
+          onTouchStart={handleInteractionStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
         >

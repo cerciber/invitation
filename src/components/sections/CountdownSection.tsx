@@ -44,19 +44,24 @@ export function CountdownSection() {
   const targetDate = useMemo(() => getWeddingDate(), [])
   const iso = useMemo(() => getWeddingDateISO(), [])
   const [timeLeft, setTimeLeft] = useState<TimeLeftState>(() => calculateTimeLeft(targetDate))
+  const [hasMounted, setHasMounted] = useState(false)
 
   useEffect(() => {
     const id = setInterval(() => setTimeLeft(calculateTimeLeft(targetDate)), 1000)
     return () => clearInterval(id)
   }, [targetDate])
 
-  const isTimeUp = timeLeft.totalMs <= 0
-  const dateLabel = formatWeddingDateLabel(targetDate, iso)
+  useEffect(() => {
+    setHasMounted(true)
+  }, [])
+
+  const isTimeUp = hasMounted ? timeLeft.totalMs <= 0 : false
+  const dateLabel = hasMounted ? formatWeddingDateLabel(targetDate, iso) : ''
 
   const Unit = ({ value, label }: { value: string; label: string }) => (
     <div className="flex flex-col items-center">
       <div className="rounded-xl bg-white/95 border border-white/60 shadow-sm px-4 py-3 sm:px-5 sm:py-4">
-        <span className="text-4xl sm:text-5xl font-bold text-emerald-900 tabular-nums font-serif">{value}</span>
+        <span suppressHydrationWarning className="text-4xl sm:text-5xl font-bold text-emerald-900 tabular-nums font-serif">{value}</span>
       </div>
       <span className="mt-2 text-[10px] sm:text-xs uppercase tracking-wide text-white/90">{label}</span>
     </div>
@@ -103,24 +108,26 @@ export function CountdownSection() {
           {/* Encabezado */}
           <div className="text-center">
             <h3 className="text-xl sm:text-2xl font-semibold tracking-tight text-white">¿Cúando?</h3>
-            <p className="mt-2 text-white/90 font-serif capitalize text-sm sm:text-base leading-tight break-words">{dateLabel}</p>
+            <p className="mt-2 text-white/90 font-serif capitalize text-sm sm:text-base leading-tight break-words" suppressHydrationWarning>
+              {dateLabel || ' '}
+            </p>
           </div>
 
           {/* Días destacados */}
           <div className="mt-6 flex justify-center">
             <div className="inline-flex items-baseline gap-2 rounded-full bg-white/95 border border-white/70 px-4 py-2">
-              <span className="text-2xl sm:text-3xl font-bold text-emerald-900 tabular-nums font-serif">{timeLeft.days}</span>
+              <span suppressHydrationWarning className="text-2xl sm:text-3xl font-bold text-emerald-900 tabular-nums font-serif">{hasMounted ? timeLeft.days : 0}</span>
               <span className="text-xs sm:text-sm uppercase tracking-wide text-emerald-800">Días</span>
             </div>
           </div>
 
           {/* Hora:minuto:segundo juntos */}
           <div className="mt-6 sm:mt-8 flex items-end justify-center gap-3 sm:gap-4">
-            <Unit value={timeLeft.hours.toString().padStart(2, '0')} label="Horas" />
+            <Unit value={(hasMounted ? timeLeft.hours : 0).toString().padStart(2, '0')} label="Horas" />
             <div className="pb-5 sm:pb-6 text-white/90 text-3xl sm:text-4xl font-semibold">:</div>
-            <Unit value={timeLeft.minutes.toString().padStart(2, '0')} label="Minutos" />
+            <Unit value={(hasMounted ? timeLeft.minutes : 0).toString().padStart(2, '0')} label="Minutos" />
             <div className="pb-5 sm:pb-6 text-white/90 text-3xl sm:text-4xl font-semibold">:</div>
-            <Unit value={timeLeft.seconds.toString().padStart(2, '0')} label="Segundos" />
+            <Unit value={(hasMounted ? timeLeft.seconds : 0).toString().padStart(2, '0')} label="Segundos" />
           </div>
 
           {/* Nota */}
