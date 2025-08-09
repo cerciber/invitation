@@ -119,12 +119,12 @@ export function HeroSection({ guestCode }: HeroSectionProps) {
               <div className="card-content">
                 <div className="guest-name-container">
                   <div className="floral-divider" style={getFrontParallaxStyle(1.5)}></div>
-                  <h1 className="guest-name" style={getFrontParallaxStyle(0.8)}>{guestName}</h1>
+                  <h1 className="guest-name" style={getFrontParallaxStyle(0.8)}>Denis & Cesar</h1>
                   <div className="floral-divider" style={getFrontParallaxStyle(1.5)}></div>
                 </div>
                 
                 <div className="invitation-message" style={getFrontParallaxStyle(0.6)}>
-                  <p className="main-message">Tienes el honor de estar {guestInfo?.female ? "invitada" : "invitado"}</p>
+                  <p className="main-message">{guestName} te queremos invitar a nuestra boda!</p>
                   <p className="sub-message">a la celebración de nuestro amor</p>
                 </div>
                 
