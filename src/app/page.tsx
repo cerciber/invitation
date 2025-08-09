@@ -1,9 +1,15 @@
 import { HeroSection } from '@/components/sections/HeroSection'
 
-export default function HomePage() {
+interface HomePageProps {
+  searchParams: { [key: string]: string | string[] | undefined }
+}
+
+export default function HomePage({ searchParams }: HomePageProps) {
+  const guestCode = typeof searchParams.codigo === 'string' ? searchParams.codigo : undefined;
+  
   return (
     <main className="min-h-screen">
-      <HeroSection />
+      <HeroSection guestCode={guestCode} />
     </main>
   )
 }

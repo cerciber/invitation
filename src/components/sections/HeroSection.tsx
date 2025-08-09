@@ -1,11 +1,20 @@
 'use client'
 
 import { useState, useRef } from 'react'
+import { getGuestByCode, getDefaultGuestName } from '@/data/guests'
 
-export function HeroSection() {
+interface HeroSectionProps {
+  guestCode?: string
+}
+
+export function HeroSection({ guestCode }: HeroSectionProps) {
   const [isFlipped, setIsFlipped] = useState(false)
   const [rotation, setRotation] = useState({ x: 0, y: 0 })
   const cardRef = useRef<HTMLDivElement>(null)
+
+  // Obtener información del invitado basada en el código
+  const guestInfo = guestCode ? getGuestByCode(guestCode) : null
+  const guestName = guestInfo?.name || getDefaultGuestName()
 
   const handleCardClick = () => {
     setIsFlipped(!isFlipped)
@@ -110,7 +119,7 @@ export function HeroSection() {
               <div className="card-content">
                 <div className="guest-name-container">
                   <div className="floral-divider" style={getFrontParallaxStyle(1.5)}></div>
-                  <h1 className="guest-name" style={getFrontParallaxStyle(0.8)}>NOMBRE_INVITADO</h1>
+                  <h1 className="guest-name" style={getFrontParallaxStyle(0.8)}>{guestName}</h1>
                   <div className="floral-divider" style={getFrontParallaxStyle(1.5)}></div>
                 </div>
                 
