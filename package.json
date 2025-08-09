@@ -1,35 +1,28 @@
 {
-  "name": "wedding-website",
-  "version": "1.0.0",
-  "description": "Página web de boda con diseño mobile-first y colores naturales",
-  "main": "index.html",
+  "name": "invitacion-boda",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
-    "start": "python3 -m http.server 8000",
-    "dev": "python3 -m http.server 8000",
-    "serve": "python3 -m http.server 8000"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "type-check": "tsc --noEmit"
   },
-  "keywords": [
-    "wedding",
-    "website",
-    "mobile-first",
-    "responsive",
-    "html5",
-    "css3",
-    "javascript"
-  ],
-  "author": "María & Juan",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/username/wedding-website.git"
+  "dependencies": {
+    "next": "14.0.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
-  "bugs": {
-    "url": "https://github.com/username/wedding-website/issues"
-  },
-  "homepage": "https://github.com/username/wedding-website#readme",
-  "devDependencies": {},
-  "dependencies": {},
-  "engines": {
-    "node": ">=14.0.0"
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "autoprefixer": "^10.4.21",
+    "eslint": "^8.55.0",
+    "eslint-config-next": "14.0.4",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5.3.0"
   }
-} 
+}
