@@ -22,6 +22,13 @@ export function HeroSection({ guestCode }: HeroSectionProps) {
     setRotation({ x: 0, y: 0 })
   }
 
+  // Prevenir zoom por doble clic
+  const handleDoubleClick = (e: React.MouseEvent) => {
+    e.preventDefault()
+    e.stopPropagation()
+    return false
+  }
+
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!cardRef.current) return
     
@@ -103,6 +110,7 @@ export function HeroSection({ guestCode }: HeroSectionProps) {
               : `rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`
           }}
           onClick={handleCardClick}
+          onDoubleClick={handleDoubleClick}
           onMouseMove={handleMouseMove}
           onMouseLeave={handleMouseLeave}
           onTouchMove={handleTouchMove}

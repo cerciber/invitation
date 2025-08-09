@@ -11,6 +11,9 @@
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
+    /* Prevenir zoom por doble clic */
+    touch-action: manipulation;
+    -ms-touch-action: manipulation;
   }
 }
 
@@ -37,6 +40,12 @@
     -webkit-user-drag: none;
     -webkit-touch-callout: none;
     touch-action: manipulation;
+    -ms-touch-action: manipulation;
+    /* Prevenir zoom por doble clic */
+    -webkit-user-zoom: none;
+    -moz-user-zoom: none;
+    -o-user-zoom: none;
+    user-zoom: none;
   }
 
   /* Removemos el hover default ya que ahora usamos rotación dinámica */
