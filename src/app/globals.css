@@ -4,5 +4,404 @@
 
 @layer base {
   html { scroll-behavior: smooth; }
-  body { @apply bg-white text-gray-900; }
+  body { 
+    @apply bg-white text-gray-900; 
+    overscroll-behavior: none;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+  }
+}
+
+@layer components {
+  /* Perspectiva para el efecto 3D */
+  .perspective-1000 {
+    perspective: 1000px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* Carta principal */
+  .wedding-card {
+    width: 320px;
+    height: 450px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.2s ease-out;
+    cursor: pointer;
+    margin: 0 auto;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-touch-callout: none;
+    touch-action: manipulation;
+  }
+
+  /* Removemos el hover default ya que ahora usamos rotación dinámica */
+  /* La rotación del flip ahora se maneja con JavaScript inline */
+
+  /* Caras de la carta */
+  .card-front,
+  .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 
+      0 20px 40px rgba(0, 0, 0, 0.3),
+      0 0 20px rgba(255, 255, 255, 0.2) inset,
+      0 0 40px rgba(138, 43, 226, 0.1);
+    user-select: none;
+    -webkit-user-select: none;
+    pointer-events: auto;
+  }
+
+  .card-back {
+    transform: rotateY(180deg);
+  }
+
+  /* Borde y estructura de la carta */
+  .card-border {
+    width: 100%;
+    height: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, 
+      #ffd700 0%, 
+      #ffeb3b 25%, 
+      #fff59d 50%, 
+      #ffeb3b 75%, 
+      #ffd700 100%);
+    position: relative;
+  }
+
+  .card-border::before {
+    content: '';
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    right: 8px;
+    bottom: 8px;
+    background: linear-gradient(135deg, 
+      #f8f9fa 0%, 
+      #ffffff 50%, 
+      #f1f3f4 100%);
+    border-radius: 12px;
+    z-index: 1;
+  }
+
+  /* Contenido del frente */
+  .card-front .card-border::after {
+    content: '';
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    background: 
+      radial-gradient(circle at 20% 80%, rgba(138, 43, 226, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(219, 112, 147, 0.1) 0%, transparent 50%),
+      linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    border-radius: 8px;
+    z-index: 2;
+  }
+
+  /* Header de la carta */
+  .card-header {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    padding: 8px 0;
+    margin-bottom: 16px;
+  }
+
+  .holographic-bar {
+    height: 4px;
+    background: linear-gradient(90deg, 
+      #ff0080, #ff8c00, #ffd700, #00ff80, #0080ff, #8000ff, #ff0080);
+    background-size: 300% 100%;
+    animation: holographic 3s ease-in-out infinite;
+    margin-bottom: 8px;
+    border-radius: 2px;
+  }
+
+  @keyframes holographic {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  .card-title {
+    font-size: 14px;
+    font-weight: bold;
+    color: #6366f1;
+    letter-spacing: 1px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Contenido principal */
+  .card-content {
+    position: relative;
+    z-index: 10;
+    padding: 0 16px;
+    text-align: center;
+  }
+
+  .guest-name-container {
+    margin: 24px 0;
+    position: relative;
+  }
+
+  .decorative-ornament {
+    height: 20px;
+    background-image: 
+      radial-gradient(circle, #d4af37 2px, transparent 2px),
+      radial-gradient(circle, #daa520 1px, transparent 1px);
+    background-size: 20px 20px, 10px 10px;
+    background-position: 0 0, 10px 10px;
+    margin: 8px auto;
+    width: 80%;
+  }
+
+  .guest-name {
+    font-size: 24px;
+    font-weight: bold;
+    color: #4c1d95;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 12px 0;
+    padding: 8px;
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 255, 255, 0.2));
+    border-radius: 8px;
+    border: 2px solid rgba(212, 175, 55, 0.3);
+  }
+
+  .invitation-message {
+    margin: 24px 0;
+  }
+
+  .main-message {
+    font-size: 20px;
+    font-weight: bold;
+    color: #be185d;
+    margin-bottom: 4px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+  }
+
+  .sub-message {
+    font-size: 14px;
+    color: #6b7280;
+    font-style: italic;
+  }
+
+  .decorative-elements {
+    margin: 24px 0;
+  }
+
+  .rings {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 16px;
+    background: radial-gradient(circle, 
+      transparent 15px, 
+      #ffd700 16px, 
+      #ffd700 20px, 
+      transparent 21px),
+    radial-gradient(circle, 
+      transparent 25px, 
+      #ffd700 26px, 
+      #ffd700 30px, 
+      transparent 31px);
+    background-size: 40px 40px, 50px 50px;
+    background-position: 10px 10px, 5px 5px;
+    background-repeat: no-repeat;
+  }
+
+  .hearts {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .hearts span {
+    color: #f43f5e;
+    font-size: 18px;
+    animation: heartbeat 2s ease-in-out infinite;
+  }
+
+  .hearts span:nth-child(2) {
+    animation-delay: 0.3s;
+  }
+
+  .hearts span:nth-child(3) {
+    animation-delay: 0.6s;
+  }
+
+  @keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+  }
+
+  /* Footer de la carta */
+  .card-footer {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    z-index: 10;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .rarity-symbol {
+    color: #ffd700;
+    font-size: 20px;
+    text-shadow: 0 0 8px rgba(255, 215, 0, 0.6);
+    animation: sparkle 2s ease-in-out infinite;
+  }
+
+  @keyframes sparkle {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.7; transform: scale(1.1); }
+  }
+
+  .card-type {
+    font-size: 12px;
+    font-weight: bold;
+    color: #7c3aed;
+    letter-spacing: 0.5px;
+  }
+
+  /* Reverso de la carta */
+  .card-back .card-border::after {
+    content: '';
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    background: 
+      repeating-linear-gradient(45deg, 
+        transparent, 
+        transparent 10px, 
+        rgba(138, 43, 226, 0.05) 10px, 
+        rgba(138, 43, 226, 0.05) 20px),
+      linear-gradient(135deg, #f8f9fa 0%, #ffffff 50%, #f1f3f4 100%);
+    border-radius: 8px;
+    z-index: 2;
+  }
+
+  .back-pattern {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    height: 80px;
+    background: 
+      radial-gradient(circle at 25% 25%, rgba(219, 112, 147, 0.2) 0%, transparent 50%),
+      radial-gradient(circle at 75% 75%, rgba(138, 43, 226, 0.2) 0%, transparent 50%);
+    border-radius: 8px;
+    z-index: 5;
+  }
+
+  .event-details {
+    position: relative;
+    z-index: 10;
+    padding: 100px 24px 40px;
+  }
+
+  .event-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #4c1d95;
+    text-align: center;
+    margin-bottom: 24px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+  }
+
+  .detail-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    padding: 8px 12px;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 6px;
+    border-left: 3px solid #d4af37;
+  }
+
+  .detail-item .label {
+    font-weight: bold;
+    color: #6366f1;
+    font-size: 14px;
+  }
+
+  .detail-item .value {
+    color: #374151;
+    font-size: 14px;
+  }
+
+  .back-footer {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    z-index: 10;
+    text-align: center;
+  }
+
+  .wedding-symbols {
+    margin-bottom: 8px;
+    font-size: 18px;
+  }
+
+  .wedding-symbols span {
+    margin: 0 8px;
+  }
+
+  .back-text {
+    font-size: 12px;
+    color: #6b7280;
+    font-style: italic;
+  }
+
+  /* Hint para móviles */
+  .tap-hint {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+  }
+
+  /* Responsive para móviles */
+  @media (max-width: 480px) {
+    .wedding-card {
+      width: 280px;
+      height: 395px;
+    }
+
+    .guest-name {
+      font-size: 20px;
+    }
+
+    .main-message {
+      font-size: 18px;
+    }
+
+    .event-details {
+      padding: 80px 20px 40px;
+    }
+
+    .detail-item {
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .detail-item .label,
+    .detail-item .value {
+      font-size: 13px;
+    }
+  }
 }
