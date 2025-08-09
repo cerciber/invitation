@@ -113,39 +113,13 @@ export function HeroSection() {
           {/* Reverso de la invitación */}
           <div className="card-back">
             <div className="card-border">
-              <div className="back-pattern"></div>
-              
-              <div className="event-details">
-                <h3 className="event-title">Detalles de la Celebración</h3>
-                
-                <div className="detail-item">
-                  <span className="label">Fecha:</span>
-                  <span className="value">15 de Diciembre, 2024</span>
-                </div>
-                
-                <div className="detail-item">
-                  <span className="label">Hora:</span>
-                  <span className="value">7:00 PM</span>
-                </div>
-                
-                <div className="detail-item">
-                  <span className="label">Lugar:</span>
-                  <span className="value">Jardín Botánico Real</span>
-                </div>
-                
-                <div className="detail-item">
-                  <span className="label">Vestimenta:</span>
-                  <span className="value">Formal Garden Party</span>
-                </div>
-              </div>
-              
-              <div className="back-footer">
-                <div className="wedding-symbols">
-                  <span>🌿</span>
-                  <span>💍</span>
-                  <span>🌿</span>
-                </div>
-                <p className="back-text">Con amor, esperamos tu presencia</p>
+              <div className="photo-container">
+                <img 
+                  src="/assets/photo-1.jpeg" 
+                  alt="Foto de la pareja" 
+                  className="couple-photo"
+                />
+                <div className="photo-overlay"></div>
               </div>
             </div>
           </div>
