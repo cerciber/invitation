@@ -229,26 +229,7 @@
     margin: 24px 0;
   }
 
-  .wedding-rings {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 20px auto;
-    font-size: 24px;
-    color: #a7c957;
-  }
 
-  .wedding-rings::before {
-    content: '💍';
-    margin-right: 8px;
-    animation: gentle-glow 3s ease-in-out infinite;
-  }
-
-  .wedding-rings::after {
-    content: '💍';
-    margin-left: 8px;
-    animation: gentle-glow 3s ease-in-out infinite 1.5s;
-  }
 
   .floral-elements {
     display: flex;
@@ -271,10 +252,7 @@
     animation-delay: 2s;
   }
 
-  @keyframes gentle-glow {
-    0%, 100% { opacity: 0.7; transform: scale(1); }
-    50% { opacity: 1; transform: scale(1.05); }
-  }
+
 
   @keyframes gentle-sway {
     0%, 100% { transform: translateY(0px) rotate(0deg); }
@@ -405,14 +383,7 @@
       0 0 20px rgba(167, 201, 87, 0.3);
   }
 
-  /* Hint para móviles */
-  .tap-hint {
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    text-align: center;
-  }
+
 
   /* Responsive para móviles */
   @media (max-width: 480px) {
@@ -453,9 +424,7 @@
       display: none;
     }
 
-    .wedding-rings {
-      font-size: 20px;
-    }
+
 
     .floral-elements span {
       font-size: 14px;

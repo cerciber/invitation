@@ -108,10 +108,9 @@ export function HeroSection() {
                 </div>
                 
                 <div className="decorative-elements">
-                  <div className="wedding-rings"></div>
                   <div className="floral-elements">
                     <span>🌿</span>
-                    <span>🌸</span>
+                    <span>🌿</span>
                     <span>🌿</span>
                   </div>
                 </div>
@@ -140,10 +139,7 @@ export function HeroSection() {
           </div>
         </div>
       </div>
-      
-      <div className="tap-hint">
-        <p className="text-green-600 text-sm mt-8">Desliza sobre la invitación • Toca para voltear</p>
-      </div>
+
     </section>
   )
 }
