@@ -114,14 +114,6 @@ export function CountdownSection() {
       className="relative px-5 py-10 overflow-hidden overscroll-contain"
       style={{ touchAction: 'pan-y' }}
     >
-      {/* Curva superior suave */}
-      <div className="absolute top-0 left-0 w-full" aria-hidden>
-        <svg className="w-full h-10 sm:h-14" viewBox="0 0 1440 100" preserveAspectRatio="none">
-          <path d="M0,80 C240,30 480,30 720,60 C960,85 1200,70 1440,40 L1440,0 L0,0 Z" fill="#eaf4e1" />
-        </svg>
-      </div>
-      {/* Fusión con la sección anterior para evitar borde recto visible */}
-      <div className="pointer-events-none absolute -top-10 left-0 w-full h-12 z-10 bg-gradient-to-t from-[#eaf4e1] via-[#eaf4e1]/80 to-transparent" />
       {/* Blobs sutiles que rompen la rectitud visual en la unión */}
       <div
         className="pointer-events-none absolute -top-14 -left-16 w-40 h-40 rounded-full blur-2xl z-10"
@@ -167,22 +159,6 @@ export function CountdownSection() {
         <p className="mt-4 text-center text-emerald-900/90 text-sm sm:text-base reveal-days">
           Faltan <span suppressHydrationWarning className="font-semibold tabular-nums">{hasMounted ? timeLeft.days : 0}</span> días
         </p>
-
-        {/* Barra de progreso del día en colores de la carta */}
-        <div className="mt-5 max-w-xl mx-auto reveal-progress">
-          <div className="h-2 rounded-full bg-[#d4e09b] overflow-hidden">
-            <div
-              className="h-full rounded-full transition-all"
-              style={{ width: `${Math.round(dayProgress * 100)}%`, background: '#6b8e23' }}
-              aria-hidden
-            />
-          </div>
-          <div className="mt-2 flex justify-between text-[11px] sm:text-xs text-emerald-700">
-            <span>Comienzo del día</span>
-            <span suppressHydrationWarning>{`${Math.round(dayProgress * 100)}%`}</span>
-            <span>Fin del día</span>
-          </div>
-        </div>
 
         {/* Nota */}
         <p className="mt-6 text-center text-emerald-800/80 text-xs sm:text-sm reveal-note">Guarda la fecha y prepárate para una celebración inolvidable.</p>
