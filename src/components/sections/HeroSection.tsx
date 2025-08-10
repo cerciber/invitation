@@ -141,7 +141,7 @@ export function HeroSection({ guestCode }: HeroSectionProps) {
   }
 
   return (
-    <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-green-50 via-white to-green-50 p-4">
+    <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-green-50 via-white to-green-50 p-4">
       <div className="perspective-1000">
         <div
           ref={cardRef}
@@ -239,6 +239,26 @@ export function HeroSection({ guestCode }: HeroSectionProps) {
               </div>
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* Indicador de scroll: "Baja para ver más" */}
+      <div
+        className="scroll-cue"
+        role="button"
+        aria-label="Ir a la siguiente sección"
+        onClick={() => {
+          const heroSection = document.querySelector('section')
+          const next = heroSection?.nextElementSibling as HTMLElement | null
+          if (next) {
+            next.scrollIntoView({ behavior: 'smooth', block: 'start' })
+          }
+        }}
+      >
+        <div className="arrows">
+          <div className="chevron" />
+          <div className="chevron" />
+          <div className="chevron" />
         </div>
       </div>
 
