@@ -67,9 +67,12 @@ export function CountdownSection() {
   // Diseño sin tarjetas: tipografía protagonista y separadores sutiles
 
   return (
-    <section className="relative px-5 py-10">
+    <section
+      className="relative px-5 py-10 overflow-hidden overscroll-contain"
+      style={{ touchAction: 'pan-y' }}
+    >
       {/* Curva superior suave */}
-      <div className="absolute -top-1 left-0 w-full" aria-hidden>
+      <div className="absolute top-0 left-0 w-full" aria-hidden>
         <svg className="w-full h-10 sm:h-14" viewBox="0 0 1440 100" preserveAspectRatio="none">
           <path d="M0,80 C240,30 480,30 720,60 C960,85 1200,70 1440,40 L1440,0 L0,0 Z" fill="#eaf4e1" />
         </svg>
