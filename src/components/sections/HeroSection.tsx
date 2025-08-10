@@ -1,20 +1,19 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
+import { useSearchParams } from 'next/navigation'
 import { getGuestByCode, getDefaultGuestName } from '@/data/guests'
 
-interface HeroSectionProps {
-  guestCode?: string
-}
-
-export function HeroSection({ guestCode }: HeroSectionProps) {
+export function HeroSection() {
   const [isFlipped, setIsFlipped] = useState(false)
   const [rotation, setRotation] = useState({ x: 0, y: 0 })
   const [isInteracting, setIsInteracting] = useState(false)
   const cardRef = useRef<HTMLDivElement>(null)
+  const searchParams = useSearchParams()
 
   // Obtener información del invitado basada en el código
-  const guestInfo = guestCode ? getGuestByCode(guestCode) : null
+  const code = typeof searchParams.get('codigo') === 'string' ? searchParams.get('codigo') : undefined
+  const guestInfo = code ? getGuestByCode(code) : null
   const guestName = guestInfo?.name || getDefaultGuestName()
 
   const handleCardClick = () => {
