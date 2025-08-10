@@ -124,11 +124,6 @@ export function StorySection() {
             </figure>
           </div>
         </div>
-
-        {/* Nota final */}
-        <p className="mt-10 text-center text-[#6b8e23]/90 text-sm sm:text-base reveal-note">
-          Gracias por ser parte de nuestra historia.
-        </p>
       </div>
     </section>
   )
