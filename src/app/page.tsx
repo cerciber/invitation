@@ -1,5 +1,6 @@
 import { HeroSection } from '@/components/sections/HeroSection'
 import { CountdownSection } from '@/components/sections/CountdownSection'
+import { StorySection } from '@/components/sections/StorySection'
 import { LocationSection } from '@/components/sections/LocationSection'
 
 interface HomePageProps {
@@ -12,6 +13,7 @@ export default function HomePage({ searchParams }: HomePageProps) {
   return (
     <main className="min-h-screen">
       <HeroSection guestCode={guestCode} />
+      <StorySection />
       <CountdownSection />
       <LocationSection />
     </main>
