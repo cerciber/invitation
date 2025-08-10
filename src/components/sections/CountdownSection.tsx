@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { getWeddingDate, getWeddingDateISO } from '@/data/event'
 
 interface TimeLeftState {
@@ -45,6 +45,8 @@ export function CountdownSection() {
   const iso = useMemo(() => getWeddingDateISO(), [])
   const [timeLeft, setTimeLeft] = useState<TimeLeftState>(() => calculateTimeLeft(targetDate))
   const [hasMounted, setHasMounted] = useState(false)
+  const [isInView, setIsInView] = useState(false)
+  const containerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const id = setInterval(() => setTimeLeft(calculateTimeLeft(targetDate)), 1000)
@@ -53,6 +55,47 @@ export function CountdownSection() {
 
   useEffect(() => {
     setHasMounted(true)
+  }, [])
+
+  // Efecto de aparición/desaparición con IntersectionObserver
+  useEffect(() => {
+    const element = containerRef.current
+    if (!element) return
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting && entry.intersectionRatio > 0.1)
+      },
+      { root: null, threshold: [0, 0.1, 0.2, 0.4, 0.6, 0.8, 1] }
+    )
+
+    observer.observe(element)
+    return () => {
+      observer.unobserve(element)
+    }
+  }, [])
+
+  // Parallax sutil en scroll para dar profundidad a los elementos cuando están en vista
+  useEffect(() => {
+    const element = containerRef.current
+    if (!element) return
+
+    const onScroll = () => {
+      const rect = element.getBoundingClientRect()
+      const viewportH = window.innerHeight || document.documentElement.clientHeight
+      const center = rect.top + rect.height / 2
+      const distanceFromViewportCenter = Math.abs(center - viewportH / 2)
+      const normalized = Math.max(0, Math.min(1, 1 - distanceFromViewportCenter / (viewportH / 2)))
+      element.style.setProperty('--parallax', normalized.toFixed(3))
+    }
+
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    window.addEventListener('resize', onScroll)
+    return () => {
+      window.removeEventListener('scroll', onScroll)
+      window.removeEventListener('resize', onScroll)
+    }
   }, [])
 
   const isTimeUp = hasMounted ? timeLeft.totalMs <= 0 : false
@@ -91,9 +134,12 @@ export function CountdownSection() {
         aria-hidden
       />
 
-      <div className="relative z-10 w-full max-w-4xl mx-auto">
+      <div
+        ref={containerRef}
+        className={`relative z-10 w-full max-w-4xl mx-auto scroll-reveal ${isInView ? 'is-visible' : 'is-hidden'}`}
+      >
         {/* Encabezado */}
-        <div className="text-center">
+        <div className="text-center reveal-header">
           <h3 className="text-xl sm:text-2xl font-semibold tracking-tight text-emerald-900">¿Cúando?</h3>
           <p className="mt-1.5 text-emerald-800/90 font-serif capitalize text-sm sm:text-base leading-tight break-words" suppressHydrationWarning>
             {dateLabel || ' '}
@@ -101,29 +147,29 @@ export function CountdownSection() {
         </div>
 
         {/* Divisor floral sutil (coincide con la carta) */}
-        <div className="mt-4 max-w-md mx-auto">
+        <div className="mt-4 max-w-md mx-auto reveal-divider">
           <div className="floral-divider" />
         </div>
 
         {/* HH:MM:SS grande */}
-        <div className="mt-5 flex items-end justify-center gap-2 sm:gap-3">
+        <div className="mt-5 flex items-end justify-center gap-2 sm:gap-3 reveal-time">
           <span suppressHydrationWarning className="text-5xl sm:text-6xl font-semibold text-[#2d5016] tabular-nums font-mono">{hh}</span>
           <span className="pb-2 sm:pb-2.5 text-[#6b8e23] text-4xl sm:text-5xl">:</span>
           <span suppressHydrationWarning className="text-5xl sm:text-6xl font-semibold text-[#2d5016] tabular-nums font-mono">{mm}</span>
           <span className="pb-2 sm:pb-2.5 text-[#6b8e23] text-4xl sm:text-5xl">:</span>
           <span suppressHydrationWarning className="text-5xl sm:text-6xl font-semibold text-[#2d5016] tabular-nums font-mono">{ss}</span>
         </div>
-        <div className="mt-2 flex justify-center gap-8 text-[11px] sm:text-xs tracking-wide uppercase text-emerald-800">
+        <div className="mt-2 flex justify-center gap-8 text-[11px] sm:text-xs tracking-wide uppercase text-emerald-800 reveal-labels">
           <span>Horas</span><span>Minutos</span><span>Segundos</span>
         </div>
 
         {/* Días en texto */}
-        <p className="mt-4 text-center text-emerald-900/90 text-sm sm:text-base">
+        <p className="mt-4 text-center text-emerald-900/90 text-sm sm:text-base reveal-days">
           Faltan <span suppressHydrationWarning className="font-semibold tabular-nums">{hasMounted ? timeLeft.days : 0}</span> días
         </p>
 
         {/* Barra de progreso del día en colores de la carta */}
-        <div className="mt-5 max-w-xl mx-auto">
+        <div className="mt-5 max-w-xl mx-auto reveal-progress">
           <div className="h-2 rounded-full bg-[#d4e09b] overflow-hidden">
             <div
               className="h-full rounded-full transition-all"
@@ -139,7 +185,7 @@ export function CountdownSection() {
         </div>
 
         {/* Nota */}
-        <p className="mt-6 text-center text-emerald-800/80 text-xs sm:text-sm">Guarda la fecha y prepárate para una celebración inolvidable.</p>
+        <p className="mt-6 text-center text-emerald-800/80 text-xs sm:text-sm reveal-note">Guarda la fecha y prepárate para una celebración inolvidable.</p>
       </div>
     </section>
   )

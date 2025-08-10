@@ -18,6 +18,52 @@
 }
 
 @layer components {
+  /* Efecto de aparición/desaparición con scroll */
+  .scroll-reveal {
+    will-change: transform, opacity;
+    transition: opacity 600ms ease, transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+    --parallax: 1;
+  }
+  .scroll-reveal.is-hidden {
+    opacity: 0;
+    transform: translateY(28px) translateZ(0) scale(0.985);
+    filter: blur(2px);
+  }
+  .scroll-reveal.is-visible {
+    opacity: 1;
+    transform: translateY(calc((1 - var(--parallax)) * 8px)) translateZ(0) scale(1);
+    filter: blur(0);
+  }
+
+  /* Stagger de elementos internos para una entrada más profesional */
+  .reveal-header, .reveal-divider, .reveal-time, .reveal-labels, .reveal-days, .reveal-progress, .reveal-note {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 520ms ease, transform 600ms ease;
+  }
+  .scroll-reveal.is-visible .reveal-header { opacity: 1; transform: translateY(0); transition-delay: 60ms; }
+  .scroll-reveal.is-visible .reveal-divider { opacity: 1; transform: translateY(0); transition-delay: 140ms; }
+  .scroll-reveal.is-visible .reveal-time { opacity: 1; transform: translateY(0); transition-delay: 220ms; }
+  .scroll-reveal.is-visible .reveal-labels { opacity: 1; transform: translateY(0); transition-delay: 300ms; }
+  .scroll-reveal.is-visible .reveal-days { opacity: 1; transform: translateY(0); transition-delay: 380ms; }
+  .scroll-reveal.is-visible .reveal-progress { opacity: 1; transform: translateY(0); transition-delay: 460ms; }
+  .scroll-reveal.is-visible .reveal-note { opacity: 1; transform: translateY(0); transition-delay: 540ms; }
+
+  /* Detalle de glow dinámico sobre la barra de progreso */
+  .reveal-progress .h-2 {
+    position: relative;
+  }
+  .reveal-progress .h-2::after {
+    content: '';
+    position: absolute;
+    inset: -6px -8px;
+    pointer-events: none;
+    background: radial-gradient(60% 60% at 0% 50%, rgba(167, 201, 87, 0.18), transparent 60%);
+    opacity: 0;
+    transition: opacity 700ms ease;
+    filter: blur(8px);
+  }
+  .scroll-reveal.is-visible .reveal-progress .h-2::after { opacity: 1; }
   /* Perspectiva para el efecto 3D */
   .perspective-1000 {
     perspective: 1000px;
@@ -45,7 +91,6 @@
     -webkit-user-zoom: none;
     -moz-user-zoom: none;
     -o-user-zoom: none;
-    user-zoom: none;
   }
 
   /* Removemos el hover default ya que ahora usamos rotación dinámica */
