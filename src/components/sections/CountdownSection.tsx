@@ -57,82 +57,86 @@ export function CountdownSection() {
 
   const isTimeUp = hasMounted ? timeLeft.totalMs <= 0 : false
   const dateLabel = hasMounted ? formatWeddingDateLabel(targetDate, iso) : ''
+  const hh = (hasMounted ? timeLeft.hours : 0).toString().padStart(2, '0')
+  const mm = (hasMounted ? timeLeft.minutes : 0).toString().padStart(2, '0')
+  const ss = (hasMounted ? timeLeft.seconds : 0).toString().padStart(2, '0')
+  const daySeconds = 24 * 60 * 60
+  const daySecondsLeft = (hasMounted ? timeLeft.hours : 0) * 3600 + (hasMounted ? timeLeft.minutes : 0) * 60 + (hasMounted ? timeLeft.seconds : 0)
+  const dayProgress = hasMounted ? Math.max(0, Math.min(1, 1 - daySecondsLeft / daySeconds)) : 0
 
-  const Unit = ({ value, label }: { value: string; label: string }) => (
-    <div className="flex flex-col items-center">
-      <div className="rounded-xl bg-white/95 border border-white/60 shadow-sm px-4 py-3 sm:px-5 sm:py-4">
-        <span suppressHydrationWarning className="text-4xl sm:text-5xl font-bold text-emerald-900 tabular-nums font-serif">{value}</span>
-      </div>
-      <span className="mt-2 text-[10px] sm:text-xs uppercase tracking-wide text-white/90">{label}</span>
-    </div>
-  )
+  // Diseño sin tarjetas: tipografía protagonista y separadores sutiles
 
   return (
-    <section
-      className="h-screen overflow-hidden relative flex items-center justify-center px-5 py-6"
-      style={{
-        background:
-          'radial-gradient(120% 100% at 0% 0%, #2d5016 0%, #1f3a10 40%, #0f2508 100%)',
-      }}
-    >
-      {/* Capa de textura sutil para más diseño y contraste con la tarjeta */}
+    <section className="relative px-5 py-10">
+      {/* Curva superior suave */}
+      <div className="absolute -top-1 left-0 w-full" aria-hidden>
+        <svg className="w-full h-10 sm:h-14" viewBox="0 0 1440 100" preserveAspectRatio="none">
+          <path d="M0,80 C240,30 480,30 720,60 C960,85 1200,70 1440,40 L1440,0 L0,0 Z" fill="#eaf4e1" />
+        </svg>
+      </div>
+      {/* Fusión con la sección anterior para evitar borde recto visible */}
+      <div className="pointer-events-none absolute -top-10 left-0 w-full h-12 z-10 bg-gradient-to-t from-[#eaf4e1] via-[#eaf4e1]/80 to-transparent" />
+      {/* Blobs sutiles que rompen la rectitud visual en la unión */}
       <div
-        className="pointer-events-none absolute inset-0 opacity-[0.07]"
-        style={{
-          background:
-            'repeating-linear-gradient(135deg, rgba(255,255,255,0.7) 0px, rgba(255,255,255,0.7) 1px, transparent 1px, transparent 8px)',
-        }}
-        aria-hidden
-      />
-      {/* Brillos suaves para profundidad */}
-      <div
-        className="pointer-events-none absolute -top-24 -left-24 w-[28rem] h-[28rem] rounded-full blur-3xl"
-        style={{ background: 'radial-gradient(closest-side, rgba(167,201,87,0.25), rgba(167,201,87,0))' }}
+        className="pointer-events-none absolute -top-14 -left-16 w-40 h-40 rounded-full blur-2xl z-10"
+        style={{ background: 'radial-gradient(closest-side, rgba(167,201,87,0.22), rgba(167,201,87,0))' }}
         aria-hidden
       />
       <div
-        className="pointer-events-none absolute -bottom-28 -right-20 w-[30rem] h-[30rem] rounded-full blur-3xl"
-        style={{ background: 'radial-gradient(closest-side, rgba(212,224,155,0.22), rgba(212,224,155,0))' }}
+        className="pointer-events-none absolute -top-12 -right-12 w-36 h-36 rounded-full blur-2xl z-10"
+        style={{ background: 'radial-gradient(closest-side, rgba(212,224,155,0.18), rgba(212,224,155,0))' }}
         aria-hidden
       />
 
-      <div className="relative z-10 w-full max-w-4xl h-full flex flex-col items-center justify-center">
-        {/* Panel “glass” para jerarquía visual */}
-        <div className="w-full rounded-2xl px-5 sm:px-8 py-6 border backdrop-blur-md shadow-2xl"
-          style={{
-            background: 'linear-gradient(180deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.10) 100%)',
-            borderColor: 'rgba(255,255,255,0.25)',
-            boxShadow: '0 10px 40px rgba(0,0,0,0.35)'
-          }}
-        >
-          {/* Encabezado */}
-          <div className="text-center">
-            <h3 className="text-xl sm:text-2xl font-semibold tracking-tight text-white">¿Cúando?</h3>
-            <p className="mt-2 text-white/90 font-serif capitalize text-sm sm:text-base leading-tight break-words" suppressHydrationWarning>
-              {dateLabel || ' '}
-            </p>
-          </div>
-
-          {/* Días destacados */}
-          <div className="mt-6 flex justify-center">
-            <div className="inline-flex items-baseline gap-2 rounded-full bg-white/95 border border-white/70 px-4 py-2">
-              <span suppressHydrationWarning className="text-2xl sm:text-3xl font-bold text-emerald-900 tabular-nums font-serif">{hasMounted ? timeLeft.days : 0}</span>
-              <span className="text-xs sm:text-sm uppercase tracking-wide text-emerald-800">Días</span>
-            </div>
-          </div>
-
-          {/* Hora:minuto:segundo juntos */}
-          <div className="mt-6 sm:mt-8 flex items-end justify-center gap-3 sm:gap-4">
-            <Unit value={(hasMounted ? timeLeft.hours : 0).toString().padStart(2, '0')} label="Horas" />
-            <div className="pb-5 sm:pb-6 text-white/90 text-3xl sm:text-4xl font-semibold">:</div>
-            <Unit value={(hasMounted ? timeLeft.minutes : 0).toString().padStart(2, '0')} label="Minutos" />
-            <div className="pb-5 sm:pb-6 text-white/90 text-3xl sm:text-4xl font-semibold">:</div>
-            <Unit value={(hasMounted ? timeLeft.seconds : 0).toString().padStart(2, '0')} label="Segundos" />
-          </div>
-
-          {/* Nota */}
-          <p className="mt-6 sm:mt-8 text-center text-white/85 text-xs sm:text-sm">Guarda la fecha y prepárate para una celebración inolvidable.</p>
+      <div className="relative z-10 w-full max-w-4xl mx-auto">
+        {/* Encabezado */}
+        <div className="text-center">
+          <h3 className="text-xl sm:text-2xl font-semibold tracking-tight text-emerald-900">¿Cúando?</h3>
+          <p className="mt-1.5 text-emerald-800/90 font-serif capitalize text-sm sm:text-base leading-tight break-words" suppressHydrationWarning>
+            {dateLabel || ' '}
+          </p>
         </div>
+
+        {/* Divisor floral sutil (coincide con la carta) */}
+        <div className="mt-4 max-w-md mx-auto">
+          <div className="floral-divider" />
+        </div>
+
+        {/* HH:MM:SS grande */}
+        <div className="mt-5 flex items-end justify-center gap-2 sm:gap-3">
+          <span suppressHydrationWarning className="text-5xl sm:text-6xl font-semibold text-[#2d5016] tabular-nums font-mono">{hh}</span>
+          <span className="pb-2 sm:pb-2.5 text-[#6b8e23] text-4xl sm:text-5xl">:</span>
+          <span suppressHydrationWarning className="text-5xl sm:text-6xl font-semibold text-[#2d5016] tabular-nums font-mono">{mm}</span>
+          <span className="pb-2 sm:pb-2.5 text-[#6b8e23] text-4xl sm:text-5xl">:</span>
+          <span suppressHydrationWarning className="text-5xl sm:text-6xl font-semibold text-[#2d5016] tabular-nums font-mono">{ss}</span>
+        </div>
+        <div className="mt-2 flex justify-center gap-8 text-[11px] sm:text-xs tracking-wide uppercase text-emerald-800">
+          <span>Horas</span><span>Minutos</span><span>Segundos</span>
+        </div>
+
+        {/* Días en texto */}
+        <p className="mt-4 text-center text-emerald-900/90 text-sm sm:text-base">
+          Faltan <span suppressHydrationWarning className="font-semibold tabular-nums">{hasMounted ? timeLeft.days : 0}</span> días
+        </p>
+
+        {/* Barra de progreso del día en colores de la carta */}
+        <div className="mt-5 max-w-xl mx-auto">
+          <div className="h-2 rounded-full bg-[#d4e09b] overflow-hidden">
+            <div
+              className="h-full rounded-full transition-all"
+              style={{ width: `${Math.round(dayProgress * 100)}%`, background: '#6b8e23' }}
+              aria-hidden
+            />
+          </div>
+          <div className="mt-2 flex justify-between text-[11px] sm:text-xs text-emerald-700">
+            <span>Comienzo del día</span>
+            <span suppressHydrationWarning>{`${Math.round(dayProgress * 100)}%`}</span>
+            <span>Fin del día</span>
+          </div>
+        </div>
+
+        {/* Nota */}
+        <p className="mt-6 text-center text-emerald-800/80 text-xs sm:text-sm">Guarda la fecha y prepárate para una celebración inolvidable.</p>
       </div>
     </section>
   )
