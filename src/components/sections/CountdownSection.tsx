@@ -132,8 +132,8 @@ export function CountdownSection() {
       >
         {/* Encabezado */}
         <div className="text-center reveal-header">
-          <h3 className="text-xl sm:text-2xl font-semibold tracking-tight text-emerald-900">¿Cúando?</h3>
-          <p className="mt-1.5 text-emerald-800/90 font-serif capitalize text-sm sm:text-base leading-tight break-words" suppressHydrationWarning>
+          <h3 className="text-xl sm:text-2xl font-semibold tracking-tight text-[#2d5016]">¿Cúando?</h3>
+          <p className="mt-1.5 text-[#6b8e23] font-serif capitalize text-sm sm:text-base leading-tight break-words" suppressHydrationWarning>
             {dateLabel || ' '}
           </p>
         </div>
@@ -151,17 +151,17 @@ export function CountdownSection() {
           <span className="pb-2 sm:pb-2.5 text-[#6b8e23] text-4xl sm:text-5xl">:</span>
           <span suppressHydrationWarning className="text-5xl sm:text-6xl font-semibold text-[#2d5016] tabular-nums font-mono">{ss}</span>
         </div>
-        <div className="mt-2 flex justify-center gap-8 text-[11px] sm:text-xs tracking-wide uppercase text-emerald-800 reveal-labels">
+        <div className="mt-2 flex justify-center gap-8 text-[11px] sm:text-xs tracking-wide uppercase text-[#2d5016] reveal-labels">
           <span>Horas</span><span>Minutos</span><span>Segundos</span>
         </div>
 
         {/* Días en texto */}
-        <p className="mt-4 text-center text-emerald-900/90 text-sm sm:text-base reveal-days">
+        <p className="mt-4 text-center text-[#2d5016]/90 text-sm sm:text-base reveal-days">
           Faltan <span suppressHydrationWarning className="font-semibold tabular-nums">{hasMounted ? timeLeft.days : 0}</span> días
         </p>
 
         {/* Nota */}
-        <p className="mt-6 text-center text-emerald-800/80 text-xs sm:text-sm reveal-note">Guarda la fecha y prepárate para una celebración inolvidable.</p>
+        <p className="mt-6 text-center text-[#6b8e23]/85 text-xs sm:text-sm reveal-note">Guarda la fecha y prepárate para una celebración inolvidable.</p>
       </div>
     </section>
   )
