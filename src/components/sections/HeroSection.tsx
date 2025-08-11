@@ -133,7 +133,7 @@ export function HeroSection() {
     const offsetY = rotation.x * 0.5  // Aumentado para mayor efecto
     
     return {
-      transform: `translate(${offsetX}px, ${offsetY}px) scale(1.05)`,
+      transform: `translate(${offsetX}px, ${offsetY}px) scale(1.05) translateZ(0)`,
       transition: isInteracting ? FAST_TRANSITION : SLOW_TRANSITION
     }
   }
@@ -241,7 +241,7 @@ export function HeroSection() {
               
               <div className="photo-container">
                 <Image
-                  src="assets/photo-1.jpeg"
+                  src="/assets/photo-1.jpeg"
                   alt="Foto de la pareja"
                   className="couple-photo"
                   style={{ ...getPhotoParallaxStyle(), WebkitBackfaceVisibility: 'hidden', backfaceVisibility: 'hidden' }}
