@@ -150,7 +150,7 @@ export function HeroSection() {
   }
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-green-50 via-white to-green-50 p-4">
+    <section className="relative min-h-[100svh] flex items-center justify-center bg-gradient-to-br from-green-50 via-white to-green-50 p-4">
       <div className="perspective-1000">
         <div
           ref={cardRef}
