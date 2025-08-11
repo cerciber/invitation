@@ -62,6 +62,7 @@ export function HeroSection() {
   }
 
   const handleTouchMove = (e: React.TouchEvent) => {
+    if ((e as any).cancelable) e.preventDefault()
     if (!cardRef.current) return
     
     const touch = e.touches[0]
@@ -243,7 +244,7 @@ export function HeroSection() {
                   src="assets/photo-1.jpeg"
                   alt="Foto de la pareja"
                   className="couple-photo"
-                  style={getPhotoParallaxStyle()}
+                  style={{ ...getPhotoParallaxStyle(), WebkitBackfaceVisibility: 'hidden', backfaceVisibility: 'hidden' }}
                   fill
                   priority
                   sizes="100vw"
@@ -261,6 +262,7 @@ export function HeroSection() {
         role="button"
         aria-label="Ir a la siguiente sección"
         onClick={() => {
+          if (isInteracting) return
           const heroSection = document.querySelector('section')
           const next = heroSection?.nextElementSibling as HTMLElement | null
           if (next) {
