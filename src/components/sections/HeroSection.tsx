@@ -5,6 +5,10 @@ import { useSearchParams } from 'next/navigation'
 import { getGuestByCode, getDefaultGuestName } from '@/data/guests'
 
 export function HeroSection() {
+  // Configuración de sensibilidad del tilt
+  const MAX_TILT_DEGREES = 20
+  const SENSITIVITY_MOUSE = 40
+  const SENSITIVITY_TOUCH = 50
   const [isFlipped, setIsFlipped] = useState(false)
   const [rotation, setRotation] = useState({ x: 0, y: 0 })
   const [isInteracting, setIsInteracting] = useState(false)
@@ -39,9 +43,9 @@ export function HeroSection() {
     const mouseX = e.clientX
     const mouseY = e.clientY
     
-    // Calcular la rotación basada en la posición del mouse
-    const rotateY = Math.max(-15, Math.min(15, ((mouseX - centerX) / (rect.width / 2)) * 25)) // Limitado a ±15°
-    const rotateX = Math.max(-15, Math.min(15, ((centerY - mouseY) / (rect.height / 2)) * 25)) // Limitado a ±15°
+    // Calcular la rotación basada en la posición del mouse (más sensible)
+    const rotateY = Math.max(-MAX_TILT_DEGREES, Math.min(MAX_TILT_DEGREES, ((mouseX - centerX) / (rect.width / 2)) * SENSITIVITY_MOUSE))
+    const rotateX = Math.max(-MAX_TILT_DEGREES, Math.min(MAX_TILT_DEGREES, ((centerY - mouseY) / (rect.height / 2)) * SENSITIVITY_MOUSE))
     
     setRotation({ x: rotateX, y: rotateY })
   }
@@ -62,9 +66,9 @@ export function HeroSection() {
     const touchX = touch.clientX
     const touchY = touch.clientY
     
-    // Calcular la rotación basada en la posición del toque
-    const rotateY = Math.max(-15, Math.min(15, ((touchX - centerX) / (rect.width / 2)) * 30)) // Limitado a ±15°
-    const rotateX = Math.max(-15, Math.min(15, ((centerY - touchY) / (rect.height / 2)) * 30)) // Limitado a ±15°
+    // Calcular la rotación basada en la posición del toque (más sensible)
+    const rotateY = Math.max(-MAX_TILT_DEGREES, Math.min(MAX_TILT_DEGREES, ((touchX - centerX) / (rect.width / 2)) * SENSITIVITY_TOUCH))
+    const rotateX = Math.max(-MAX_TILT_DEGREES, Math.min(MAX_TILT_DEGREES, ((centerY - touchY) / (rect.height / 2)) * SENSITIVITY_TOUCH))
     
     setRotation({ x: rotateX, y: rotateY })
   }
@@ -123,7 +127,7 @@ export function HeroSection() {
     
     return {
       transform: `translate(${offsetX}px, ${offsetY}px) scale(1.05)`,
-      transition: 'transform 0.15s ease-out' // Más rápida para mayor responsividad
+      transition: 'transform 0.12s ease-out'
     }
   }
 
@@ -135,7 +139,7 @@ export function HeroSection() {
     
     return {
       transform: `translate(${offsetX}px, ${offsetY}px)`,
-      transition: 'transform 0.15s ease-out'
+      transition: 'transform 0.12s ease-out'
     }
   }
 
