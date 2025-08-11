@@ -9,6 +9,8 @@ export function HeroSection() {
   const MAX_TILT_DEGREES = 20
   const SENSITIVITY_MOUSE = 40
   const SENSITIVITY_TOUCH = 50
+  const FAST_TRANSITION = 'transform 0.12s ease-out'
+  const SLOW_TRANSITION = 'transform 1.4s cubic-bezier(0.22, 1, 0.36, 1)'
   const [isFlipped, setIsFlipped] = useState(false)
   const [rotation, setRotation] = useState({ x: 0, y: 0 })
   const [isInteracting, setIsInteracting] = useState(false)
@@ -24,6 +26,8 @@ export function HeroSection() {
     setIsFlipped(!isFlipped)
     // Resetear la rotación cuando se voltea la carta para que quede centrada
     setRotation({ x: 0, y: 0 })
+    // Asegurar transición lenta en el flip
+    setIsInteracting(false)
   }
 
   // Prevenir zoom por doble clic
@@ -53,6 +57,7 @@ export function HeroSection() {
   const handleMouseLeave = () => {
     // Volver a la posición normal cuando el mouse sale
     setRotation({ x: 0, y: 0 })
+    setIsInteracting(false)
   }
 
   const handleTouchMove = (e: React.TouchEvent) => {
@@ -127,7 +132,7 @@ export function HeroSection() {
     
     return {
       transform: `translate(${offsetX}px, ${offsetY}px) scale(1.05)`,
-      transition: 'transform 0.12s ease-out'
+      transition: isInteracting ? FAST_TRANSITION : SLOW_TRANSITION
     }
   }
 
@@ -139,7 +144,7 @@ export function HeroSection() {
     
     return {
       transform: `translate(${offsetX}px, ${offsetY}px)`,
-      transition: 'transform 0.12s ease-out'
+      transition: isInteracting ? FAST_TRANSITION : SLOW_TRANSITION
     }
   }
 
@@ -153,7 +158,8 @@ export function HeroSection() {
             touchAction: isInteracting ? 'none' as const : 'manipulation' as const,
             transform: isFlipped 
               ? `rotateX(${rotation.x}deg) rotateY(${180 + rotation.y}deg)`
-              : `rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`
+              : `rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`,
+            transition: isInteracting ? FAST_TRANSITION : SLOW_TRANSITION
           }}
           onClick={handleCardClick}
           onDoubleClick={handleDoubleClick}

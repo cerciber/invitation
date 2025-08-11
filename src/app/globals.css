@@ -78,7 +78,8 @@
     height: 500px;
     position: relative;
     transform-style: preserve-3d;
-    transition: transform 0.12s ease-out; /* Más rápida para mayor sensibilidad */
+    /* La transición se controla dinámicamente desde React según interacción */
+    transition: none;
     cursor: pointer;
     margin: 0 auto;
     user-select: none;
