@@ -75,7 +75,7 @@ export function StorySection() {
             <div className="absolute -top-3 left-7 w-16 h-6 bg-[#d4e09b]/80 rotate-[-8deg] rounded-[2px] shadow-sm" />
             <figure className="relative bg-white rounded-xl shadow-[0_10px_30px_rgba(0,0,0,0.12)] border border-[#2d5016]/15 rotate-[-3.5deg] transition-transform duration-300 group-hover:rotate-[-1deg]">
               <div className="relative w-full h-64 sm:h-72">
-                <Image src="/assets/photo-1.jpeg" alt="Cómo nos conocimos" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 33vw" />
+                <Image src="assets/photo-1.jpeg" alt="Cómo nos conocimos" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 33vw" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent" />
               </div>
               <figcaption className="px-4 py-3">
@@ -94,7 +94,7 @@ export function StorySection() {
             <div className="absolute -top-3 right-8 w-16 h-6 bg-[#a7c957]/80 rotate-[7deg] rounded-[2px] shadow-sm" />
             <figure className="relative bg-white rounded-xl shadow-[0_10px_30px_rgba(0,0,0,0.12)] border border-[#2d5016]/15 rotate-[2.5deg] transition-transform duration-300 group-hover:rotate-[0.5deg]">
               <div className="relative w-full h-64 sm:h-72">
-                <Image src="/assets/photo-1.jpeg" alt="Nuestra primera cita" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 33vw" />
+                <Image src="assets/photo-1.jpeg" alt="Nuestra primera cita" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 33vw" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent" />
               </div>
               <figcaption className="px-4 py-3">
@@ -114,7 +114,7 @@ export function StorySection() {
             <div className="absolute -top-4 left-24 w-14 h-6 bg-[#9cb834]/70 rotate-[8deg] rounded-[2px] shadow-sm" />
             <figure className="relative bg-white rounded-xl shadow-[0_10px_30px_rgba(0,0,0,0.12)] border border-[#2d5016]/15 -rotate-2 transition-transform duration-300 group-hover:rotate-0">
               <div className="relative w-full h-64 sm:h-72">
-                <Image src="/assets/photo-1.jpeg" alt="La propuesta" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 33vw" />
+                <Image src="assets/photo-1.jpeg" alt="La propuesta" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 33vw" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent" />
               </div>
               <figcaption className="px-4 py-3">
