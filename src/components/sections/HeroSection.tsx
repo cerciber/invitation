@@ -62,6 +62,7 @@ export function HeroSection() {
   }
 
   const handleTouchMove = (e: React.TouchEvent) => {
+    if ((e as any).cancelable) e.preventDefault()
     if (!cardRef.current) return
     
     const touch = e.touches[0]
@@ -132,7 +133,7 @@ export function HeroSection() {
     const offsetY = rotation.x * 0.5  // Aumentado para mayor efecto
     
     return {
-      transform: `translate(${offsetX}px, ${offsetY}px) scale(1.05)`,
+      transform: `translate(${offsetX}px, ${offsetY}px) scale(1.05) translateZ(0)`,
       transition: isInteracting ? FAST_TRANSITION : SLOW_TRANSITION
     }
   }
@@ -175,21 +176,23 @@ export function HeroSection() {
           {/* Frente de la invitación */}
           <div className="card-front">
             <div className="card-border">
-              <div className="card-header">
+              <div className="card-header" style={{paddingTop: '10px', paddingBottom: '5px', marginBottom: '5px'}}>
                 <div className="wedding-ornament" style={getFrontParallaxStyle(1.2)}></div>
-                <h2 className="wedding-title" style={getFrontParallaxStyle(0.7)}>Invitación de Boda</h2>
+                <p className="main-message" style={getFrontParallaxStyle(0.7)}>
+                  ¡{guestName}!<br />estás cordialmente invitad{guestInfo?.female ? 'a' : 'o'} <br /> a la boda de
+                </p>
               </div>
               
               <div className="card-content">
-                <div className="guest-name-container">
+                <div className="guest-name-container" style={{marginTop: '0px', marginBottom: '30px'}}>
                   <div className="floral-divider" style={getFrontParallaxStyle(1.5)}></div>
-                  <h1 className="guest-name" style={getFrontParallaxStyle(0.8)}>Denis & Cesar</h1>
+                  <h1 className="guest-name" style={getFrontParallaxStyle(0.8)}>Denis y Cesar</h1>
                   <div className="floral-divider" style={getFrontParallaxStyle(1.5)}></div>
                 </div>
                 
                 <div className="invitation-message" style={getFrontParallaxStyle(0.6)}>
-                  <p className="main-message">{guestName} te queremos invitar a nuestra boda!</p>
-                  <p className="sub-message">a la celebración de nuestro amor</p>
+                  <p className="main-message"></p>
+                  <p className="sub-message"></p>
                 </div>
                 
                 <div className="decorative-elements">
@@ -240,10 +243,10 @@ export function HeroSection() {
               
               <div className="photo-container">
                 <Image
-                  src="assets/photo-1.jpeg"
+                  src="/assets/photo-1.jpeg"
                   alt="Foto de la pareja"
                   className="couple-photo"
-                  style={getPhotoParallaxStyle()}
+                  style={{ ...getPhotoParallaxStyle(), WebkitBackfaceVisibility: 'hidden', backfaceVisibility: 'hidden' }}
                   fill
                   priority
                   sizes="100vw"
@@ -261,6 +264,7 @@ export function HeroSection() {
         role="button"
         aria-label="Ir a la siguiente sección"
         onClick={() => {
+          if (isInteracting) return
           const heroSection = document.querySelector('section')
           const next = heroSection?.nextElementSibling as HTMLElement | null
           if (next) {

@@ -7,7 +7,7 @@ export default function HomePage() {
   return (
     <main className="min-h-[100svh]">
       <HeroSection />
-      <StorySection />
+      {/* <StorySection /> */}
       <CountdownSection />
       <LocationSection />
     </main>
