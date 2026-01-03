@@ -7,11 +7,12 @@ export function LocationSection() {
   const [isInView, setIsInView] = useState(false)
   const [copied, setCopied] = useState(false)
 
-  const address = 'Av. Ejemplo 123, Col. Centro, Ciudad Jardín'
+  const address = 'El Tandil, Zipaquirá, Cundinamarca'
+  const googleMapsUrl = 'https://www.google.com/maps?q=4.9831223487854,-73.99113464355469&z=17&hl=en'
 
   const handleCopy = async () => {
     try {
-      await navigator.clipboard.writeText(address)
+      await navigator.clipboard.writeText(googleMapsUrl)
       setCopied(true)
       window.setTimeout(() => setCopied(false), 1500)
     } catch {
@@ -32,7 +33,7 @@ export function LocationSection() {
   }, [])
 
   return (
-    <section className="relative py-16 sm:py-20 bg-gradient-to-b from-white via-green-50/40 to-white overflow-hidden">
+    <section className="relative py-8 sm:py-10 bg-gradient-to-b from-white via-green-50/40 to-white overflow-hidden">
       {/* Fondo decorativo sutil */}
       <div
         aria-hidden
@@ -58,11 +59,11 @@ export function LocationSection() {
           <div className="floral-divider" />
         </div>
 
-        {/* Contenido: Dirección + Mapa */}
-        <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-stretch">
+        {/* Contenido: Dirección centrada */}
+        <div className="mt-8 flex justify-center">
           {/* Tarjeta de dirección */}
-          <div className="rounded-xl border border-emerald-900/10 bg-white/80 backdrop-blur p-5 sm:p-6 shadow-sm">
-            <h4 className="text-base sm:text-lg font-semibold text-[#2d5016]">Salón de Eventos</h4>
+          <div className="w-full max-w-md rounded-xl border border-emerald-900/10 bg-white/80 backdrop-blur p-5 sm:p-6 shadow-sm">
+            <h4 className="text-base sm:text-lg font-semibold text-[#2d5016]">Hacienda Vista Hermosa</h4>
             <div className="mt-1 flex items-center gap-2">
               <p className="text-sm sm:text-base text-[#2d5016]/90">{address}</p>
               <button
@@ -73,14 +74,14 @@ export function LocationSection() {
                 {copied ? 'Copiado' : 'Copiar'}
               </button>
             </div>
-            <p className="mt-1 text-sm text-[#6b8e23]/85">Fecha: 18 de Octubre, 2025 · 16:00 hrs</p>
+            <p className="mt-1 text-sm text-[#6b8e23]/85">Fecha: 14 de Marzo, 2026 · 15:00 hrs</p>
 
             <div className="mt-4 flex flex-wrap gap-2">
               <a
                 className="inline-flex items-center gap-2 rounded-lg bg-[#2d5016] px-3.5 py-2 text-white text-sm hover:bg-[#254513] transition-colors"
                 target="_blank"
                 rel="noopener noreferrer"
-                href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`}
+                href={googleMapsUrl}
               >
                 Abrir en Google Maps
               </a>
@@ -88,7 +89,7 @@ export function LocationSection() {
                 className="inline-flex items-center gap-2 rounded-lg border border-[#2d5016]/20 px-3.5 py-2 text-[#2d5016] text-sm bg-white hover:bg-[#f1f6ea] transition-colors"
                 target="_blank"
                 rel="noopener noreferrer"
-                href={`https://waze.com/ul?q=${encodeURIComponent(address)}`}
+                href={`https://waze.com/ul?ll=4.9831223487854,-73.99113464355469&navigate=yes`}
               >
                 Abrir en Waze
               </a>

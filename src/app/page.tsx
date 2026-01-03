@@ -2,6 +2,7 @@ import { HeroSection } from '@/components/sections/HeroSection'
 import { CountdownSection } from '@/components/sections/CountdownSection'
 import { StorySection } from '@/components/sections/StorySection'
 import { LocationSection } from '@/components/sections/LocationSection'
+import { ConsiderationsSection } from '@/components/sections/ConsiderationsSection'
 
 export default function HomePage() {
   return (
@@ -10,6 +11,7 @@ export default function HomePage() {
       {/* <StorySection /> */}
       <CountdownSection />
       <LocationSection />
+      <ConsiderationsSection />
     </main>
   )
 }

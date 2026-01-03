@@ -111,7 +111,7 @@ export function CountdownSection() {
 
   return (
     <section
-      className="relative px-5 py-10 overflow-hidden overscroll-contain"
+      className="relative px-5 py-6 overflow-hidden overscroll-contain"
       style={{ touchAction: 'pan-y' }}
     >
       {/* Blobs sutiles que rompen la rectitud visual en la unión */}

@@ -205,7 +205,7 @@ export function HeroSection() {
               </div>
               
               <div className="card-footer">
-                <p className="wedding-date" style={getFrontParallaxStyle(0.5)}>Una celebración de amor eterno</p>
+                <p className="wedding-date" style={getFrontParallaxStyle(0.5)}>“Hay personas por las que vale la pena derretirse”. Frozen (2013)</p>
                 <div className="elegant-flourish" style={getFrontParallaxStyle(1.4)}></div>
               </div>
             </div>
