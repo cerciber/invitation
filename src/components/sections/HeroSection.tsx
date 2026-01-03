@@ -242,7 +242,7 @@ export function HeroSection() {
               
               <div className="photo-container">
                 <img
-                  src="/assets/photo-1.jpeg"
+                  src="./assets/photo-1.jpeg"
                   alt="Foto de la pareja"
                   className="couple-photo"
                   style={{ 
