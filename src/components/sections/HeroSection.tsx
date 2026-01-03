@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
-import Image from 'next/image'
 import { useSearchParams } from 'next/navigation'
 import { getGuestByCode, getDefaultGuestName } from '@/data/guests'
 
@@ -242,14 +241,16 @@ export function HeroSection() {
               </div>
               
               <div className="photo-container">
-                <Image
+                <img
                   src="/assets/photo-1.jpeg"
                   alt="Foto de la pareja"
                   className="couple-photo"
-                  style={{ ...getPhotoParallaxStyle(), WebkitBackfaceVisibility: 'hidden', backfaceVisibility: 'hidden' }}
-                  fill
-                  priority
-                  sizes="100vw"
+                  style={{ 
+                    ...getPhotoParallaxStyle(), 
+                    WebkitBackfaceVisibility: 'hidden', 
+                    backfaceVisibility: 'hidden'
+                  }}
+                  loading="eager"
                 />
                 <div className="photo-overlay"></div>
               </div>

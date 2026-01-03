@@ -34,6 +34,12 @@ const considerations: Consideration[] = [
     title: 'Solo adultos',
     description: '**Boda sin niños** para que disfruten sin preocupaciones 🥂',
     icon: '🔞'
+  },
+  {
+    id: 'rsvp',
+    title: 'Confirmación',
+    description: '**Confirma tu asistencia** para echarle más agua a la sopa 😄',
+    icon: '✅'
   }
 ]
 
