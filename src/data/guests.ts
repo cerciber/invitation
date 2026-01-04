@@ -6,17 +6,9 @@ export interface GuestInfo {
 
 // Lista de invitados con sus códigos únicos
 export const guestsData: Record<string, GuestInfo> = {
-  "A001": {
-    name: "Claudia Ardila",
+  "0870792885": {
+    name: "Ray y acompañante",
     female: true,
-  },
-  "A002": {
-    name: "Juliet Buitrago",
-    female: true,
-  },
-  "A003": {
-    name: "Pablo Torres",
-    female: false,
   },
 };
 
