@@ -178,7 +178,7 @@ export function HeroSection() {
               <div className="card-header" style={{paddingTop: '10px', paddingBottom: '5px', marginBottom: '5px'}}>
                 <div className="wedding-ornament" style={getFrontParallaxStyle(1.2)}></div>
                 <p className="main-message" style={getFrontParallaxStyle(0.7)}>
-                  ¡{guestName}!<br />estás cordialmente invitad{guestInfo?.female ? 'a' : 'o'} <br /> a la boda de
+                  ¡{guestName}!<br />{guestInfo?.plural ? 'están' : 'estás'} cordialmente invitad{guestInfo?.plural ? 'os' : (guestInfo?.female ? 'a' : 'o')} <br /> a la boda de
                 </p>
               </div>
               

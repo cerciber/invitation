@@ -2,6 +2,7 @@
 export interface GuestInfo {
   name: string;
   female: boolean;
+  plural: boolean;
 }
 
 // Lista de invitados con sus códigos únicos
@@ -9,6 +10,7 @@ export const guestsData: Record<string, GuestInfo> = {
   "0870792885": {
     name: "Ray y acompañante",
     female: true,
+    plural: true,
   },
 };
 
