@@ -77,6 +77,7 @@
     width: 350px;
     height: 500px;
     position: relative;
+    -webkit-transform-style: preserve-3d;
     transform-style: preserve-3d;
     /* La transición se controla dinámicamente desde React según interacción */
     transition: none;
@@ -92,6 +93,10 @@
     -webkit-user-zoom: none;
     -moz-user-zoom: none;
     -o-user-zoom: none;
+    /* Forzar aceleración de hardware en iOS */
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    will-change: transform;
   }
 
   /* Removemos el hover default ya que ahora usamos rotación dinámica */
@@ -103,6 +108,7 @@
     position: absolute;
     width: 100%;
     height: 100%;
+    -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     border-radius: 20px;
     overflow: hidden;
@@ -114,9 +120,15 @@
     user-select: none;
     -webkit-user-select: none;
     pointer-events: auto;
+    /* Forzar contexto 3D en iOS */
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    -webkit-perspective: 1000px;
+    perspective: 1000px;
   }
 
   .card-back {
+    -webkit-transform: rotateY(180deg);
     transform: rotateY(180deg);
   }
 
