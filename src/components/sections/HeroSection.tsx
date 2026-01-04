@@ -248,9 +248,21 @@ export function HeroSection() {
                   style={{ 
                     ...getPhotoParallaxStyle(), 
                     WebkitBackfaceVisibility: 'hidden', 
-                    backfaceVisibility: 'hidden'
+                    backfaceVisibility: 'hidden',
+                    WebkitTransform: 'translateZ(0)',
+                    transform: 'translateZ(0)',
+                    willChange: 'transform'
                   }}
                   loading="eager"
+                  onLoad={() => console.log('Image loaded successfully')}
+                  onError={(e) => {
+                    console.error('Image failed to load:', e);
+                    // Fallback: try absolute path
+                    const img = e.target as HTMLImageElement;
+                    if (img.src.includes('./assets/')) {
+                      img.src = '/invitation/assets/photo-1.jpeg';
+                    }
+                  }}
                 />
                 <div className="photo-overlay"></div>
               </div>

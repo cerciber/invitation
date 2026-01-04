@@ -394,9 +394,17 @@
       brightness(1.05) 
       sepia(0.1)
       grayscale(0.1);
-    /* Mejoras mínimas para iPhone */
+    /* Mejoras específicas para iPhone/iOS Safari */
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    will-change: transform;
+    /* Forzar renderizado de hardware en iOS */
+    -webkit-perspective: 1000;
+    perspective: 1000;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
     /* El transform y transition se manejan ahora desde JavaScript para el paralaje */
   }
 
