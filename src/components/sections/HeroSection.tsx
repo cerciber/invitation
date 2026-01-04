@@ -242,7 +242,7 @@ export function HeroSection() {
               
               <div className="photo-container">
                 <img
-                  src="./assets/photo-1.jpeg"
+                  src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=400&h=600&fit=crop&crop=faces"
                   alt="Foto de la pareja"
                   className="couple-photo"
                   style={{ 
@@ -254,14 +254,13 @@ export function HeroSection() {
                     willChange: 'transform'
                   }}
                   loading="eager"
+                  crossOrigin="anonymous"
                   onLoad={() => console.log('Image loaded successfully')}
                   onError={(e) => {
                     console.error('Image failed to load:', e);
-                    // Fallback: try absolute path
+                    // Fallback to local image
                     const img = e.target as HTMLImageElement;
-                    if (img.src.includes('./assets/')) {
-                      img.src = '/invitation/assets/photo-1.jpeg';
-                    }
+                    img.src = './assets/photo-1.jpeg';
                   }}
                 />
                 <div className="photo-overlay"></div>
