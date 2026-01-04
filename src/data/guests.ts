@@ -203,7 +203,7 @@ export const guestsData: Record<string, GuestInfo> = {
     plural: true,
   },
   "743322332222233334": {
-    name: "Lore y  acompañante",
+    name: "Lore y acompañante",
     female: false,
     plural: true,
   },
