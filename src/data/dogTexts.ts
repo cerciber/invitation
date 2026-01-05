@@ -57,6 +57,14 @@ export interface DogTexts {
   // StorySection (si existe)
   storyTitle?: string;
   storySubtitle?: string;
+  
+  // DressCodeSection
+  dressCodeTitle?: string;
+  dressCodeSubtitle?: string;
+  dressCodeDescription?: string;
+  womenDressCodeTitle?: string;
+  womenDressCodeDescription?: string;
+  dressCodeNote?: string;
 }
 
 export const dogTexts: DogTexts = {
@@ -112,7 +120,15 @@ export const dogTexts: DogTexts = {
   googleMapsButton: "¡Au au Google!",
   wazeButton: "¡Wof Waze!",
   address: "¡Guau Wof, Wof Wof, Guau Guau!",
-  fallbackText: "¡Wof wof wof!"
+  fallbackText: "¡Wof wof wof!",
+  
+  // DressCodeSection
+  dressCodeTitle: "¡Wof wof guau!",
+  dressCodeSubtitle: "¡Au au au! 🐕",
+  dressCodeDescription: "¡**Guau guau**! ¡Wof wof wof! ¡Au au! **¡Guau!** ¡wof wof wof! ✨",
+  womenDressCodeTitle: "¡Au au!",
+  womenDressCodeDescription: "¡Guau wof! ¡Au au! ¡Wof wof guau!",
+  dressCodeNote: "💡 ¡Guau guau! ¡**Wof wof**! ¡Au au au wof wof! 🐾"
 };
 
 // Función para obtener textos según si es perro o no
