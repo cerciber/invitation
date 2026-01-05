@@ -1,6 +1,9 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import { useSearchParams } from 'next/navigation'
+import { getGuestByCode } from '@/data/guests'
+import { getTexts } from '@/data/dogTexts'
 
 interface Consideration {
   id: string
@@ -46,6 +49,34 @@ const considerations: Consideration[] = [
 export function ConsiderationsSection() {
   const containerRef = useRef<HTMLDivElement>(null)
   const [isInView, setIsInView] = useState(false)
+  
+  // Obtener información del invitado para modo perro
+  const searchParams = useSearchParams()
+  const code = typeof searchParams.get('codigo') === 'string' ? searchParams.get('codigo') : undefined
+  const guestInfo = code ? getGuestByCode(code) : null
+  const dogTexts = getTexts(guestInfo?.dog || false)
+  
+  // Función para obtener las consideraciones con textos apropiados
+  const getConsiderations = () => {
+    if (!dogTexts) return considerations
+    
+    return considerations.map(consideration => {
+      switch (consideration.id) {
+        case 'dress-code':
+          return { ...consideration, title: dogTexts.considerations.dressCode.title, description: dogTexts.considerations.dressCode.description }
+        case 'timing':
+          return { ...consideration, title: dogTexts.considerations.timing.title, description: dogTexts.considerations.timing.description }
+        case 'gifts':
+          return { ...consideration, title: dogTexts.considerations.gifts.title, description: dogTexts.considerations.gifts.description }
+        case 'no-children':
+          return { ...consideration, title: dogTexts.considerations.noChildren.title, description: dogTexts.considerations.noChildren.description }
+        case 'rsvp':
+          return { ...consideration, title: dogTexts.considerations.rsvp.title, description: dogTexts.considerations.rsvp.description }
+        default:
+          return consideration
+      }
+    })
+  }
 
   useEffect(() => {
     const element = containerRef.current
@@ -77,8 +108,12 @@ export function ConsiderationsSection() {
       >
         {/* Encabezado */}
         <div className="text-center">
-          <h3 className="text-xl sm:text-2xl font-semibold tracking-tight text-[#2d5016]">Para tener en cuenta</h3>
-          <p className="mt-1.5 text-[#6b8e23] font-serif text-sm sm:text-base">Información importante para el día especial</p>
+          <h3 className="text-xl sm:text-2xl font-semibold tracking-tight text-[#2d5016]">
+            {dogTexts ? dogTexts.considerationsTitle : 'Para tener en cuenta'}
+          </h3>
+          <p className="mt-1.5 text-[#6b8e23] font-serif text-sm sm:text-base">
+            {dogTexts ? dogTexts.considerationsSubtitle : 'Información importante para el día especial'}
+          </p>
         </div>
 
         {/* Divisor floral */}
@@ -88,7 +123,7 @@ export function ConsiderationsSection() {
 
         {/* Lista de consideraciones */}
         <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-          {considerations.map((consideration, index) => (
+          {getConsiderations().map((consideration, index) => (
             <div
               key={consideration.id}
               className="rounded-xl border border-emerald-900/10 bg-white/80 backdrop-blur p-4 sm:p-5 shadow-sm hover:shadow-md transition-shadow duration-300"
@@ -109,7 +144,7 @@ export function ConsiderationsSection() {
                   <p 
                     className="text-sm sm:text-base text-[#6b8e23]/90 leading-relaxed"
                     dangerouslySetInnerHTML={{
-                      __html: (consideration.description || 'Información próximamente')
+                      __html: (consideration.description || (dogTexts ? dogTexts.fallbackText : 'Información próximamente'))
                         .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
                     }}
                   />

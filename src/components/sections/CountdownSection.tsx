@@ -1,7 +1,10 @@
 'use client'
 
 import { useEffect, useMemo, useRef, useState } from 'react'
+import { useSearchParams } from 'next/navigation'
 import { getWeddingDate, getWeddingDateISO } from '@/data/event'
+import { getGuestByCode } from '@/data/guests'
+import { getTexts } from '@/data/dogTexts'
 
 interface TimeLeftState {
   totalMs: number
@@ -47,6 +50,12 @@ export function CountdownSection() {
   const [hasMounted, setHasMounted] = useState(false)
   const [isInView, setIsInView] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
+  
+  // Obtener información del invitado para modo perro
+  const searchParams = useSearchParams()
+  const code = typeof searchParams.get('codigo') === 'string' ? searchParams.get('codigo') : undefined
+  const guestInfo = code ? getGuestByCode(code) : null
+  const dogTexts = getTexts(guestInfo?.dog || false)
 
   useEffect(() => {
     const id = setInterval(() => setTimeLeft(calculateTimeLeft(targetDate)), 1000)
@@ -132,9 +141,11 @@ export function CountdownSection() {
       >
         {/* Encabezado */}
         <div className="text-center reveal-header">
-          <h3 className="text-xl sm:text-2xl font-semibold tracking-tight text-[#2d5016]">¿Cúando?</h3>
+          <h3 className="text-xl sm:text-2xl font-semibold tracking-tight text-[#2d5016]">
+            {dogTexts ? dogTexts.whenTitle : '¿Cuándo?'}
+          </h3>
           <p className="mt-1.5 text-[#6b8e23] font-serif capitalize text-sm sm:text-base leading-tight break-words" suppressHydrationWarning>
-            {dateLabel || ' '}
+            {dogTexts ? dogTexts.dateLabel : (dateLabel || ' ')}
           </p>
         </div>
 
@@ -152,16 +163,20 @@ export function CountdownSection() {
           <span suppressHydrationWarning className="text-5xl sm:text-6xl font-semibold text-[#2d5016] tabular-nums font-mono">{ss}</span>
         </div>
         <div className="mt-2 flex justify-center gap-8 text-[11px] sm:text-xs tracking-wide uppercase text-[#2d5016] reveal-labels">
-          <span>Horas</span><span>Minutos</span><span>Segundos</span>
+          <span>{dogTexts ? dogTexts.timeLabels.hours : 'Horas'}</span>
+          <span>{dogTexts ? dogTexts.timeLabels.minutes : 'Minutos'}</span>
+          <span>{dogTexts ? dogTexts.timeLabels.seconds : 'Segundos'}</span>
         </div>
 
         {/* Días en texto */}
         <p className="mt-4 text-center text-[#2d5016]/90 text-sm sm:text-base reveal-days">
-          Faltan <span suppressHydrationWarning className="font-semibold tabular-nums">{hasMounted ? timeLeft.days : 0}</span> días
+          {dogTexts ? dogTexts.daysLeft : 'Faltan'} <span suppressHydrationWarning className="font-semibold tabular-nums">{hasMounted ? timeLeft.days : 0}</span> {dogTexts ? '!' : 'días'}
         </p>
 
         {/* Nota */}
-        <p className="mt-6 text-center text-[#6b8e23]/85 text-xs sm:text-sm reveal-note">Guarda la fecha y prepárate para una celebración inolvidable.</p>
+        <p className="mt-6 text-center text-[#6b8e23]/85 text-xs sm:text-sm reveal-note">
+          {dogTexts ? dogTexts.saveTheDate : 'Guarda la fecha y prepárate para una celebración inolvidable.'}
+        </p>
       </div>
     </section>
   )

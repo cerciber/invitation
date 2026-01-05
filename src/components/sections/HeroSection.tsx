@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { getGuestByCode, getDefaultGuestName } from '@/data/guests'
+import { getTexts } from '@/data/dogTexts'
 
 export function HeroSection() {
   // Configuración de sensibilidad del tilt
@@ -21,6 +22,9 @@ export function HeroSection() {
   const code = typeof searchParams.get('codigo') === 'string' ? searchParams.get('codigo') : undefined
   const guestInfo = code ? getGuestByCode(code) : null
   const guestName = guestInfo?.name || getDefaultGuestName()
+  
+  // Obtener textos especiales para perros
+  const dogTexts = getTexts(guestInfo?.dog || false)
 
   const handleCardClick = () => {
     setIsFlipped(!isFlipped)
@@ -178,7 +182,11 @@ export function HeroSection() {
               <div className="card-header" style={{paddingTop: '10px', paddingBottom: '5px', marginBottom: '5px'}}>
                 <div className="wedding-ornament" style={getFrontParallaxStyle(1.2)}></div>
                 <p className="main-message" style={getFrontParallaxStyle(0.7)}>
-                  ¡{guestName}!<br />{guestInfo?.plural ? 'están' : 'estás'} cordialmente invitad{guestInfo?.plural ? (guestInfo?.female ? 'as' : 'os') : (guestInfo?.female ? 'a' : 'o')} <br /> a la boda de
+                  ¡{guestName}!<br />
+                  {dogTexts ? 
+                    dogTexts.invitationMessage : 
+                    `${guestInfo?.plural ? 'están' : 'estás'} cordialmente invitad${guestInfo?.plural ? (guestInfo?.female ? 'as' : 'os') : (guestInfo?.female ? 'a' : 'o')} a la boda de`
+                  }
                 </p>
               </div>
               
@@ -204,7 +212,12 @@ export function HeroSection() {
               </div>
               
               <div className="card-footer">
-                <p className="wedding-date" style={getFrontParallaxStyle(0.5)}>“Hay personas por las que vale la pena derretirse”. Frozen (2013)</p>
+                <p className="wedding-date" style={getFrontParallaxStyle(0.5)}>
+                  {dogTexts ? 
+                    dogTexts.quote : 
+                    '"Hay personas por las que vale la pena derretirse". Frozen (2013)'
+                  }
+                </p>
                 <div className="elegant-flourish" style={getFrontParallaxStyle(1.4)}></div>
               </div>
             </div>

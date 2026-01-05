@@ -3,6 +3,7 @@ export interface GuestInfo {
   name: string;
   female: boolean;
   plural: boolean;
+  dog?: boolean;
 }
 
 // Lista de invitados con sus códigos únicos
@@ -203,14 +204,14 @@ export const guestsData: Record<string, GuestInfo> = {
     plural: true,
   },
   "743322332222233334": {
-    name: "Lore y acompañante",
+    name: "Lore y Gabriel",
     female: false,
     plural: true,
   },
   "443332222234734": {
-    name: "Laura",
-    female: true,
-    plural: false,
+    name: "Laura y Miguel",
+    female: false,  
+    plural: true,
   },
   "777744433234734": {
     name: "Linda",
@@ -256,6 +257,18 @@ export const guestsData: Record<string, GuestInfo> = {
     name: "Oriana (Seño)",
     female: true,
     plural: false,
+  },
+  "345345432": {
+    name: "Mandarina",
+    female: true,
+    plural: false,
+    dog: true,
+  },
+  "453452343": {
+    name: "Coquito",
+    female: true,
+    plural: false,
+    dog: true,
   },
 };
 

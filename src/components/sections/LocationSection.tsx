@@ -1,13 +1,22 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import { useSearchParams } from 'next/navigation'
+import { getGuestByCode } from '@/data/guests'
+import { getTexts } from '@/data/dogTexts'
 
 export function LocationSection() {
   const containerRef = useRef<HTMLDivElement>(null)
   const [isInView, setIsInView] = useState(false)
   const [copied, setCopied] = useState(false)
+  
+  // Obtener información del invitado para modo perro
+  const searchParams = useSearchParams()
+  const code = typeof searchParams.get('codigo') === 'string' ? searchParams.get('codigo') : undefined
+  const guestInfo = code ? getGuestByCode(code) : null
+  const dogTexts = getTexts(guestInfo?.dog || false)
 
-  const address = 'El Tandil, Zipaquirá, Cundinamarca'
+  const address = dogTexts ? dogTexts.address : 'El Tandil, Zipaquirá, Cundinamarca'
   const googleMapsUrl = 'https://www.google.com/maps?q=4.9831223487854,-73.99113464355469&z=17&hl=en'
 
   const handleCopy = async () => {
@@ -50,8 +59,12 @@ export function LocationSection() {
       >
         {/* Encabezado */}
         <div className="text-center">
-          <h3 className="text-xl sm:text-2xl font-semibold tracking-tight text-[#2d5016]">¿Dónde?</h3>
-          <p className="mt-1.5 text-[#6b8e23] font-serif text-sm sm:text-base">Ubicación del evento</p>
+          <h3 className="text-xl sm:text-2xl font-semibold tracking-tight text-[#2d5016]">
+            {dogTexts ? dogTexts.locationTitle : '¿Dónde?'}
+          </h3>
+          <p className="mt-1.5 text-[#6b8e23] font-serif text-sm sm:text-base">
+            {dogTexts ? dogTexts.locationSubtitle : 'Ubicación del evento'}
+          </p>
         </div>
 
         {/* Divisor floral */}
@@ -63,7 +76,9 @@ export function LocationSection() {
         <div className="mt-8 flex justify-center">
           {/* Tarjeta de dirección */}
           <div className="w-full max-w-md rounded-xl border border-emerald-900/10 bg-white/80 backdrop-blur p-5 sm:p-6 shadow-sm">
-            <h4 className="text-base sm:text-lg font-semibold text-[#2d5016]">Hacienda Vista Hermosa</h4>
+            <h4 className="text-base sm:text-lg font-semibold text-[#2d5016]">
+              {dogTexts ? dogTexts.locationName : 'Hacienda Vista Hermosa'}
+            </h4>
             <div className="mt-1 flex items-center gap-2">
               <p className="text-sm sm:text-base text-[#2d5016]/90">{address}</p>
               <button
@@ -71,10 +86,12 @@ export function LocationSection() {
                 onClick={handleCopy}
                 className="inline-flex items-center rounded-lg border border-[#2d5016]/20 px-2.5 py-1.5 text-xs sm:text-sm text-[#2d5016] bg-white hover:bg-[#f1f6ea] transition-colors"
               >
-                {copied ? 'Copiado' : 'Copiar'}
+                {copied ? (dogTexts ? dogTexts.copiedButton : 'Copiado') : (dogTexts ? dogTexts.copyButton : 'Copiar')}
               </button>
             </div>
-            <p className="mt-1 text-sm text-[#6b8e23]/85">Fecha: 14 de Marzo, 2026 · 15:00 hrs</p>
+            <p className="mt-1 text-sm text-[#6b8e23]/85">
+              {dogTexts ? dogTexts.locationDate : 'Fecha: 14 de Marzo, 2026 · 15:00 hrs'}
+            </p>
 
             <div className="mt-4 flex flex-wrap gap-2">
               <a
@@ -83,7 +100,7 @@ export function LocationSection() {
                 rel="noopener noreferrer"
                 href={googleMapsUrl}
               >
-                Abrir en Google Maps
+                {dogTexts ? dogTexts.googleMapsButton : 'Abrir en Google Maps'}
               </a>
               <a
                 className="inline-flex items-center gap-2 rounded-lg border border-[#2d5016]/20 px-3.5 py-2 text-[#2d5016] text-sm bg-white hover:bg-[#f1f6ea] transition-colors"
@@ -91,7 +108,7 @@ export function LocationSection() {
                 rel="noopener noreferrer"
                 href={`https://waze.com/ul?ll=4.9831223487854,-73.99113464355469&navigate=yes`}
               >
-                Abrir en Waze
+                {dogTexts ? dogTexts.wazeButton : 'Abrir en Waze'}
               </a>
             </div>
           </div>
