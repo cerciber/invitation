@@ -107,7 +107,7 @@ export function DressCodeSection() {
             <figure className="relative bg-white rounded-xl shadow-[0_10px_30px_rgba(0,0,0,0.12)] border border-[#2d5016]/15 rotate-[-2deg] transition-transform duration-300 group-hover:rotate-[-0.5deg]">
               <div className="relative w-full h-96 sm:h-[500px]">
                 <Image 
-                  src="/assets/dress-code-1.jpeg" 
+                  src="assets/dress-code-1.jpeg" 
                   alt="Código de vestimenta para damas - Opción 1" 
                   fill 
                   className="object-contain rounded-t-xl" 
@@ -134,7 +134,7 @@ export function DressCodeSection() {
             <figure className="relative bg-white rounded-xl shadow-[0_10px_30px_rgba(0,0,0,0.12)] border border-[#2d5016]/15 rotate-[1.5deg] transition-transform duration-300 group-hover:rotate-[0.5deg]">
               <div className="relative w-full h-96 sm:h-[500px]">
                 <Image 
-                  src="/assets/dress-code-2.jpeg" 
+                  src="assets/dress-code-2.jpeg" 
                   alt="Código de vestimenta para damas - Opción 2" 
                   fill 
                   className="object-contain rounded-t-xl" 
