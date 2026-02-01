@@ -286,7 +286,7 @@ export const guestsData: Record<string, GuestInfo> = {
     plural: true,
   },
   "819182273762626": {
-    name: "Elena",
+    name: "Helena",
     female: true,
     plural: false,
   },
