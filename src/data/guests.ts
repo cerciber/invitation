@@ -305,6 +305,16 @@ export const guestsData: Record<string, GuestInfo> = {
     female: false,
     plural: false,
   },
+  "987000007266612": {
+    name: "Natali",
+    female: false,
+    plural: false,
+  },
+  "392928644344422993": {
+    name: "David",
+    female: false,
+    plural: false,
+  },
 };
 
 // Función para obtener información del invitado por código
