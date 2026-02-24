@@ -4,10 +4,19 @@ export interface GuestInfo {
   female: boolean;
   plural: boolean;
   dog?: boolean;
+  tables?: number[];
+  names?: string[];
 }
 
 // Lista de invitados con sus códigos únicos
 export const guestsData: Record<string, GuestInfo> = {
+  "345345543434534": {
+    name: "Pepito y Juana",
+    female: false,
+    plural: true,
+    tables: [1, 2],
+    names: ["Pepito", "Juana"],
+  },
   "0870792885": {
     name: "Ray y acompañante",
     female: false,
