@@ -106,7 +106,7 @@ export const guestsData: Record<string, GuestInfo> = {
     female: false,
     plural: true,
     tables: [3, 2],
-    names: ["Santi", "Jarlen"],
+    names: ["Santiago", "Jarlen"],
   },
   "7682938489485":{
     name: "Lina",
