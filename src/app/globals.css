@@ -862,6 +862,16 @@
   }
 }
 
+@media print {
+  #pdf-download-btn {
+    display: none !important;
+  }
+
+  body {
+    background: #fff !important;
+  }
+}
+
 /* Indicador de scroll para la sección hero */
 @layer components {
   .scroll-cue {
