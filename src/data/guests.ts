@@ -404,6 +404,13 @@ export const guestsData: Record<string, GuestInfo> = {
     tables: [8, 8],
     names: ["Dana", "Jose Manuel"],
   },
+  "92838487776428": {
+    name: "Anderson Socha",
+    female: false,
+    plural: false,
+    tables: [3],
+    names: ["Anderson"],
+  },
 };
 
 // Función para obtener información del invitado por código
