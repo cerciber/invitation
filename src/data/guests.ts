@@ -46,11 +46,11 @@ export const guestsData: Record<string, GuestInfo> = {
     names: ["Pablo (Hermano novio)"],
   },
   "0394384343": {
-    name: "Lina, Sergio y Paula",
-    female: false,
+    name: "Lina y Paula",
+    female: true,
     plural: true,
-    tables: [2, 2, 3],
-    names: ["Lina (Hermana novia)", "Sergio", "Paula"],
+    tables: [1, 3],
+    names: ["Lina (Hermana novia)", "Paula"],
   },
   "0993737434": {
     name: "Senaida y Jose Angel",
@@ -88,11 +88,11 @@ export const guestsData: Record<string, GuestInfo> = {
     names: ["Graciela"],
   },
   "19283647872":{
-    name: "Diego y Leidy",
+    name: "Diego",
     female: false,
-    plural: true,
-    tables: [2, 2],
-    names: ["Diego (Tio novio)", "Leidy"],
+    plural: false,
+    tables: [2],
+    names: ["Diego (Tio novio)"],
   },
   "928347374273":{
     name: "Tio Joselito",
@@ -249,11 +249,11 @@ export const guestsData: Record<string, GuestInfo> = {
     names: ["Janeth"],
   },
   "066975742934834": {
-    name: "Darly y Carlos mono",
-    female: false,
-    plural: true,
-    tables: [1, 1],
-    names: ["Darly", "Carlos mono (Tio novia)"],
+    name: "Darly",
+    female: true,
+    plural: false,
+    tables: [1],
+    names: ["Darly"],
   },
   "7654543342934834": {
     name: "Carlos y Jhoan",
@@ -270,11 +270,11 @@ export const guestsData: Record<string, GuestInfo> = {
     names: ["Camilo (Primo novia)", "Milena (Prima novia)", "Mery", "Faider"],
   },
   "74332233342934834": {
-    name: "Roberto y Manuel",
+    name: "Roberto",
     female: false,
-    plural: true,
-    tables: [8, 8],
-    names: ["Roberto", "Manuel (Acompañante Roberto)"],
+    plural: false,
+    tables: [8],
+    names: ["Roberto"],
   },
   "743322332222233334": {
     name: "Lore y Gabriel",
@@ -362,13 +362,6 @@ export const guestsData: Record<string, GuestInfo> = {
     tables: [2],
     names: ["Helena"],
   },
-  "827172615130082": {
-    name: "Angie Jiménez",
-    female: true,
-    plural: false,
-    tables: [9],
-    names: ["Angie Jiménez"],
-  },
   "8287272626363639": {
     name: "Henry y Angie",
     female: false,
@@ -401,7 +394,7 @@ export const guestsData: Record<string, GuestInfo> = {
     name: "Dana y Jose Manuel",
     female: false,
     plural: true,
-    tables: [8, 8],
+    tables: [2, 2],
     names: ["Dana", "Jose Manuel"],
   },
   "92838487776428": {
